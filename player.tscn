@@ -2,15 +2,43 @@
 
 [ext_resource type="Script" uid="uid://dq6q3ptdo25u3" path="res://player.gd" id="1_4flbx"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_urqp6"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_5glgx"]
+radius = 0.5024414
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_5glgx"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hbghi"]
+albedo_color = Color(0.17254902, 0.7019608, 0.6117647, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_5glgx"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_urqp6"]
+radius = 0.5473633
 
 [node name="Player" type="CharacterBody3D" unique_id=2118992186]
 script = ExtResource("1_4flbx")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1281100342]
-mesh = SubResource("BoxMesh_urqp6")
+[node name="BodyMesh" type="MeshInstance3D" parent="." unique_id=1281100342]
+mesh = SubResource("CapsuleMesh_5glgx")
+surface_material_override/0 = SubResource("StandardMaterial3D_hbghi")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1940123732]
-shape = SubResource("BoxShape3D_5glgx")
+[node name="Eye1" type="MeshInstance3D" parent="BodyMesh" unique_id=650651776]
+transform = Transform3D(0.32854944, 0, 0, 0, 0.32776588, 0, 0, 0, 0.2551388, -0.17686528, 0.48147523, -0.44608653)
+mesh = SubResource("SphereMesh_5glgx")
+
+[node name="Eye2" type="MeshInstance3D" parent="BodyMesh" unique_id=41415204]
+transform = Transform3D(0.32854944, 0, 0, 0, 0.32776588, 0, 0, 0, 0.2551388, 0.17279822, 0.48147523, -0.4727261)
+mesh = SubResource("SphereMesh_5glgx")
+
+[node name="BodyCol" type="CollisionShape3D" parent="." unique_id=1940123732]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0074899197, 0)
+shape = SubResource("CapsuleShape3D_urqp6")
+
+[node name="CameraOrigin" type="Node3D" parent="." unique_id=691537197]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.50695765, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraOrigin" unique_id=1676717546]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39393973, 0.44611883)
+spring_length = 2.0
+margin = 0.5
+
+[node name="Camera3D" type="Camera3D" parent="CameraOrigin/SpringArm3D" unique_id=1570792498]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.34467936, -2.0992727)
