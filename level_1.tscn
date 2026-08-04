@@ -1,5 +1,42 @@
 [gd_scene format=3 uid="uid://dfblwaak7xqs1"]
 
+[ext_resource type="PackedScene" uid="uid://c02lknfrknv3f" path="res://ball.tscn" id="1_3hls8"]
+[ext_resource type="PackedScene" uid="uid://dqresirb884u7" path="res://player.tscn" id="2_hbghi"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_5glgx"]
+size = Vector3(10, 0.5, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5glgx"]
+size = Vector3(10, 0.5, 10)
+
 [node name="Level1" type="Node3D" unique_id=1654974197]
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1504182614]
+transform = Transform3D(1, 0, 0, 0, 0.9060787, 0.42310923, 0, -0.42310923, 0.9060787, 0, 2.29855, 4.04411)
+
+[node name="Floor" type="StaticBody3D" parent="." unique_id=611736279]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.053839445, 0)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=898275047]
+mesh = SubResource("BoxMesh_5glgx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=577915614]
+shape = SubResource("BoxShape3D_5glgx")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1174930809]
+transform = Transform3D(0.6055545, 0.6801818, -0.41310588, 0.073778294, 0.46888566, 0.88017225, 0.7923764, -0.5634705, 0.23375317, -1.8205442, 7.3273187, 2.4747252)
+
+[node name="Balls" type="Node3D" parent="." unique_id=297355734]
+
+[node name="Ball" parent="Balls" unique_id=1323665573 instance=ExtResource("1_3hls8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1463883, 6.4654055, 0)
+
+[node name="Ball2" parent="Balls" unique_id=586240562 instance=ExtResource("1_3hls8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2206848, 5.4169135, 0)
+
+[node name="Ball3" parent="Balls" unique_id=1812901665 instance=ExtResource("1_3hls8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.30554867, 3.7642436, 0)
+
+[node name="Player" parent="." unique_id=2118992186 instance=ExtResource("2_hbghi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6911082, 1.7858834, 0)
