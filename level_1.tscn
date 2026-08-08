@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dfblwaak7xqs1"]
 
-[ext_resource type="PackedScene" uid="uid://c02lknfrknv3f" path="res://ball.tscn" id="1_3hls8"]
 [ext_resource type="PackedScene" uid="uid://dqresirb884u7" path="res://player.tscn" id="2_hbghi"]
+[ext_resource type="PackedScene" uid="uid://dtnw8guevhw2r" path="res://ring.tscn" id="2_hn12h"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_5glgx"]
 size = Vector3(10, 0.5, 10)
@@ -24,16 +24,16 @@ shape = SubResource("BoxShape3D_5glgx")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1174930809]
 transform = Transform3D(0.5956385, 0.63187957, -0.4959264, 0.13173604, 0.5321928, 0.8363112, 0.79237646, -0.56347054, 0.23375322, -6.7096343, 9.009928, 2.4747252)
 
-[node name="Balls" type="Node3D" parent="." unique_id=297355734]
-
-[node name="Ball" parent="Balls" unique_id=1323665573 instance=ExtResource("1_3hls8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1463883, 6.4654055, 0)
-
-[node name="Ball2" parent="Balls" unique_id=586240562 instance=ExtResource("1_3hls8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2206848, 5.4169135, 0)
-
-[node name="Ball3" parent="Balls" unique_id=1812901665 instance=ExtResource("1_3hls8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.30554867, 3.7642436, 0)
-
 [node name="Player" parent="." unique_id=2118992186 instance=ExtResource("2_hbghi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6911082, 1.7858834, 0)
+
+[node name="Rings" type="Node3D" parent="." unique_id=1883530061]
+
+[node name="Ring" parent="Rings" unique_id=580698755 instance=ExtResource("2_hn12h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4895697, 1.2130988, 0)
+
+[node name="Ring2" parent="Rings" unique_id=1938458914 instance=ExtResource("2_hn12h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7457123, 0)
+
+[node name="Ring3" parent="Rings" unique_id=1972673081 instance=ExtResource("2_hn12h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2128057, 0.9502919, 3.0830774)
