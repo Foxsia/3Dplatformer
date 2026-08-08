@@ -11,5 +11,5 @@ func _process(delta):
 
 func _on_body_entered(body):
 	if body is CharacterBody3D:
-		print("ring collected")
+		GameManager.add_ring()
 		queue_free()

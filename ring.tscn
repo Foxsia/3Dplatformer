@@ -11,6 +11,7 @@ albedo_color = Color(0.5411765, 0, 1, 1)
 size = Vector3(2, 0.47668457, 1)
 
 [node name="Ring" type="Area3D" unique_id=1555783509]
+collision_layer = 2
 script = ExtResource("1_ln3uk")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=53885017]

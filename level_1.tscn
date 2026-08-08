@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dqresirb884u7" path="res://player.tscn" id="2_hbghi"]
 [ext_resource type="PackedScene" uid="uid://dtnw8guevhw2r" path="res://ring.tscn" id="2_hn12h"]
+[ext_resource type="Script" uid="uid://dy5kx1x7sa4py" path="res://hud.gd" id="3_hn12h"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_5glgx"]
 size = Vector3(10, 0.5, 10)
@@ -37,3 +38,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7457123, 0)
 
 [node name="Ring3" parent="Rings" unique_id=1972673081 instance=ExtResource("2_hn12h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2128057, 0.9502919, 3.0830774)
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=510913633]
+script = ExtResource("3_hn12h")
+
+[node name="RingLabel" type="Label" parent="HUD" unique_id=1509702340]
+offset_left = 21.0
+offset_top = 21.0
+offset_right = 148.0
+offset_bottom = 76.0
