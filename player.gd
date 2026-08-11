@@ -1,5 +1,6 @@
 extends CharacterBody3D
 
+signal lives_changed(new_lives)
 
 const SPEED := 5.0
 const JUMP_VELOCITY := 4.5
@@ -81,7 +82,7 @@ func die():
 	is_dead = true
 	lives -= 1
 	
-	print(lives)
+	lives_changed.emit(lives)
 	
 	if lives <= 0:
 		game_over()
