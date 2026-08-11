@@ -24,7 +24,6 @@ albedo_color = Color(1, 0, 1, 1)
 radius = 0.5473633
 
 [node name="Player" type="CharacterBody3D" unique_id=2118992186]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0068095, 0)
 script = ExtResource("1_4flbx")
 
 [node name="BodyMesh" type="MeshInstance3D" parent="." unique_id=1281100342]

@@ -1,6 +1,6 @@
 extends Area3D
 
-@export var rotation_speed = 2.0
+@export var rotation_speed := 2.0
 @onready var ring = $MeshInstance3D
 
 func _ready():

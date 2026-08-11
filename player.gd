@@ -1,20 +1,27 @@
 extends CharacterBody3D
 
 
-const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
+const SPEED := 5.0
+const JUMP_VELOCITY := 4.5
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-var speed_multiplier = 1.0
-var is_running = false
+var speed_multiplier := 1.0
+var is_running := false
+
+@export var sens := 0.5
+@export var max_lives := 3
+var lives := max_lives
+
+var checkpoint_position : Vector3
+var is_dead := false
 
 @onready var pivot = $CameraOrigin
 @onready var pitch = $CameraOrigin/CameraPitch
 @onready var mesh = $BodyMesh
 
-@export var sens = 0.5
-
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	checkpoint_position = global_position
+	add_to_group("player")
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -61,5 +68,34 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
-
+	
 	move_and_slide()
+	
+	if global_position.y < -10:
+		die()
+
+func die():
+	if is_dead:
+		return
+	
+	is_dead = true
+	lives -= 1
+	
+	print(lives)
+	
+	if lives <= 0:
+		game_over()
+	else:
+		respawn()
+
+func respawn():
+	global_position = checkpoint_position
+	velocity = Vector3.ZERO
+	is_dead = false
+
+func game_over():
+	print("GameOVER")
+	get_tree().reload_current_scene()
+
+func set_checkpoint(new_position: Vector3):
+	checkpoint_position = new_position
