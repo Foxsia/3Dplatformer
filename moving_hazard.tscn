@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bhkdjyjyafc4n"]
+
+[ext_resource type="Script" uid="uid://dqk8l2qu2ivd7" path="res://moving_hazard.gd" id="1_4hbcv"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_5glgx"]
+radius = 0.4
+height = 0.8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_akx1y"]
+albedo_color = Color(1, 1, 0.15294118, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_urqp6"]
+radius = 0.40088144
+
+[node name="MovingHazard" type="Area3D" unique_id=1236582225]
+script = ExtResource("1_4hbcv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1982016633]
+mesh = SubResource("SphereMesh_5glgx")
+surface_material_override/0 = SubResource("StandardMaterial3D_akx1y")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=608850544]
+shape = SubResource("SphereShape3D_urqp6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2093194152]

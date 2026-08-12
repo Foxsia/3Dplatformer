@@ -96,7 +96,7 @@ func respawn():
 
 func game_over():
 	print("GameOVER")
-	get_tree().reload_current_scene()
+	get_tree().reload_current_scene.call_deferred()
 
 func set_checkpoint(new_position: Vector3):
 	checkpoint_position = new_position
