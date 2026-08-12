@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://cqrr18nwrxbiq"]
+
+[ext_resource type="Script" uid="uid://d27oter5lgwwc" path="res://bounce_pad.gd" id="1_g6spo"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_5glgx"]
+size = Vector3(2, 0.25, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0vgel"]
+albedo_color = Color(0.7410495, 0.13008249, 0.43883035, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_urqp6"]
+size = Vector3(2, 0.25, 2)
+
+[node name="BouncePad" type="Area3D" unique_id=716837622]
+script = ExtResource("1_g6spo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=550779026]
+mesh = SubResource("BoxMesh_5glgx")
+surface_material_override/0 = SubResource("StandardMaterial3D_0vgel")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1803797643]
+shape = SubResource("BoxShape3D_urqp6")

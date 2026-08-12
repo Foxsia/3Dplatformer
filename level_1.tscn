@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cpyrqdc5yb01n" path="res://spike_hazard.tscn" id="6_5hph3"]
 [ext_resource type="PackedScene" uid="uid://dopuk7ndch3l0" path="res://moving_platform.tscn" id="7_bjebc"]
 [ext_resource type="PackedScene" uid="uid://bhkdjyjyafc4n" path="res://moving_hazard.tscn" id="7_j7kpp"]
+[ext_resource type="PackedScene" uid="uid://cqrr18nwrxbiq" path="res://bounce_pad.tscn" id="8_5rr72"]
 
 [node name="Level1" type="Node3D" unique_id=1654974197]
 
@@ -48,6 +49,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.743, 1, 0)
 
 [node name="MovingPlatform" parent="." unique_id=1437887413 instance=ExtResource("7_bjebc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.681759, 0, 0)
+
+[node name="BouncePad" parent="." unique_id=716837622 instance=ExtResource("8_5rr72")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, 0)
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=510913633]
 script = ExtResource("3_hn12h")
