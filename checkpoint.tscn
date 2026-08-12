@@ -25,5 +25,3 @@ shape = SubResource("CylinderShape3D_f3f7h")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5834961, 0)
 mesh = SubResource("CylinderMesh_urqp6")
 surface_material_override/0 = SubResource("StandardMaterial3D_qkrtn")
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]

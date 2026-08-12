@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dtnw8guevhw2r" path="res://ring.tscn" id="2_hn12h"]
 [ext_resource type="Script" uid="uid://dy5kx1x7sa4py" path="res://hud.gd" id="3_hn12h"]
 [ext_resource type="PackedScene" uid="uid://b7vtg7sgi3wou" path="res://checkpoint.tscn" id="3_ihfcg"]
+[ext_resource type="PackedScene" uid="uid://cpyrqdc5yb01n" path="res://spike_hazard.tscn" id="6_5hph3"]
 
 [node name="Level1" type="Node3D" unique_id=1654974197]
 
@@ -23,7 +24,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.021, 1.7, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.534, 0.5, 0)
 
 [node name="Ring2" parent="Rings" unique_id=1938458914 instance=ExtResource("2_hn12h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.203, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.679455, 0.5, 0)
 
 [node name="Ring3" parent="Rings" unique_id=1972673081 instance=ExtResource("2_hn12h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.576294, 0.57690644, -0.24098396)
@@ -51,3 +52,6 @@ offset_left = 20.0
 offset_top = 58.0
 offset_right = 141.0
 offset_bottom = 107.0
+
+[node name="SpikeHazard" parent="." unique_id=939330507 instance=ExtResource("6_5hph3")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 6.036917, 1.1148677, -1.6330367)

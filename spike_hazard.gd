@@ -5,4 +5,4 @@ func _ready():
 
 func _on_body_entered(body):
 	if body.is_in_group("player"):
-		body.set_checkpoint(global_position + Vector3.UP * 1.0)
+		body.die()
