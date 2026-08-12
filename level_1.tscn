@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://dy5kx1x7sa4py" path="res://hud.gd" id="3_hn12h"]
 [ext_resource type="PackedScene" uid="uid://b7vtg7sgi3wou" path="res://checkpoint.tscn" id="3_ihfcg"]
 [ext_resource type="PackedScene" uid="uid://cpyrqdc5yb01n" path="res://spike_hazard.tscn" id="6_5hph3"]
+[ext_resource type="PackedScene" uid="uid://dopuk7ndch3l0" path="res://moving_platform.tscn" id="7_bjebc"]
 [ext_resource type="PackedScene" uid="uid://bhkdjyjyafc4n" path="res://moving_hazard.tscn" id="7_j7kpp"]
 
 [node name="Level1" type="Node3D" unique_id=1654974197]
@@ -39,6 +40,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.203, 0.25, 0)
 [node name="Platform3" parent="." unique_id=822757200 instance=ExtResource("1_rka8t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.171, 0.25, 0)
 
+[node name="SpikeHazard" parent="." unique_id=939330507 instance=ExtResource("6_5hph3")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 6.036917, 1.1148677, -1.6330367)
+
+[node name="MovingHazard" parent="." unique_id=1236582225 instance=ExtResource("7_j7kpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.743, 1, 0)
+
+[node name="MovingPlatform" parent="." unique_id=1437887413 instance=ExtResource("7_bjebc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.681759, 0, 0)
+
 [node name="HUD" type="CanvasLayer" parent="." unique_id=510913633]
 script = ExtResource("3_hn12h")
 
@@ -53,9 +63,3 @@ offset_left = 20.0
 offset_top = 58.0
 offset_right = 141.0
 offset_bottom = 107.0
-
-[node name="SpikeHazard" parent="." unique_id=939330507 instance=ExtResource("6_5hph3")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 6.036917, 1.1148677, -1.6330367)
-
-[node name="MovingHazard" parent="." unique_id=1236582225 instance=ExtResource("7_j7kpp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.743, 1, 0)
