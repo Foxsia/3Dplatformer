@@ -15,7 +15,6 @@ height = 1.1953125
 albedo_color = Color(1, 0, 0, 1)
 
 [node name="Checkpoint" type="Area3D" unique_id=98324273]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0065722466, 0)
 script = ExtResource("1_luqgl")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1546841692]
