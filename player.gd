@@ -20,12 +20,22 @@ var is_dead := false
 
 @onready var pivot = $CameraOrigin
 @onready var pitch = $CameraOrigin/CameraPitch
-@onready var mesh = $BodyMesh
+@onready var mesh = get_node("animal-fox2/animal-fox")
+@onready var animation_tree = get_node("animal-fox2/AnimationTree")
+
+var animation_playback
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	checkpoint_position = global_position
 	add_to_group("player")
+	
+	animation_tree.active = true
+	animation_playback = animation_tree.get("parameters/playback")
+	animation_playback.travel("idle")
+	
+	mesh.rotation.y += PI
+
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -40,7 +50,7 @@ func _physics_process(delta):
 	if is_on_floor():
 		jumps_left = MAX_JUMPS
 	
-	if Input.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed("jump") and jumps_left > 0:
 		velocity.y = JUMP_VELOCITY
 		jumps_left -= 1
 	
@@ -70,12 +80,19 @@ func _physics_process(delta):
 
 		mesh.rotation.y = lerp_angle(
 			mesh.rotation.y,
-			atan2(-direction.x, -direction.z),
+			atan2(-direction.x, -direction.z) + PI,
 			delta * 10
 		)
+		
+		if is_running:
+			animation_playback.travel("run")
+		else:
+			animation_playback.travel("walk")
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
+		
+		animation_playback.travel("idle")
 	
 	move_and_slide()
 	

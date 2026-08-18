@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://jf4h1qn60tqw"]
+
+[ext_resource type="PackedScene" uid="uid://djdip6f085w0o" path="res://fox.tscn" id="2_xy3o5"]
+
+[sub_resource type="GDScript" id="GDScript_xf6hh"]
+script/source = "extends Node3D
+
+@onready var animation_tree = get_node(\"animal-fox2/AnimationTree\")
+
+var state_machine
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	state_machine = animation_tree[\"parameters/playback\"]
+	state_machine.travel(\"idle\")
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3x81b"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fshas"]
+animation = &"run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g7277"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_piqwn"]
+xfade_time = 0.2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_82b6t"]
+xfade_time = 0.2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mtj2x"]
+xfade_time = 0.2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_23djb"]
+xfade_time = 0.2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_oklit"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_5glgx"]
+states/idle/node = SubResource("AnimationNodeAnimation_3x81b")
+states/idle/position = Vector2(343, 100)
+states/run/node = SubResource("AnimationNodeAnimation_fshas")
+states/run/position = Vector2(659, 100)
+states/walk/node = SubResource("AnimationNodeAnimation_g7277")
+states/walk/position = Vector2(513, 100)
+transitions = ["idle", "walk", SubResource("AnimationNodeStateMachineTransition_piqwn"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_82b6t"), "run", "walk", SubResource("AnimationNodeStateMachineTransition_mtj2x"), "walk", "run", SubResource("AnimationNodeStateMachineTransition_23djb"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_oklit")]
+
+[node name="AnimationTest" type="Node3D" unique_id=486432417]
+script = SubResource("GDScript_xf6hh")
+
+[node name="animal-fox2" parent="." unique_id=1796462518 instance=ExtResource("2_xy3o5")]
+
+[node name="body" parent="animal-fox2/animal-fox/root" parent_id_path=PackedInt32Array(1796462518, 1324482158) index="0" unique_id=1997069344]
+transform = Transform3D(0.9991113, -0.03769651, -0.018855033, 0.037703365, 0.9992889, 7.796829e-06, 0.018841334, -0.000718688, 0.9998222, 1.573182e-08, 0.18124998, -3.8083503e-08)
+
+[node name="tail" parent="animal-fox2/animal-fox/root/body" index="0" unique_id=2124812744]
+transform = Transform3D(0.99555886, 0.09414117, 0, -0.09414117, 0.99555886, 0, 0, 0, 1, 0, 0.53749996, -0.4950962)
+
+[node name="@AnimationTree@77207" type="AnimationTree" parent="animal-fox2" unique_id=376482887]
+tree_root = SubResource("AnimationNodeStateMachine_5glgx")
+anim_player = NodePath("../AnimationPlayer")
+
+[editable path="animal-fox2"]
