@@ -4,9 +4,12 @@ signal lives_changed(new_lives)
 
 const SPEED := 5.0
 const JUMP_VELOCITY := 4.5
+const  MAX_JUMPS := 2
+
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var speed_multiplier := 1.0
 var is_running := false
+var jumps_left := MAX_JUMPS
 
 @export var sens := 0.5
 @export var max_lives := 3
@@ -33,9 +36,13 @@ func _input(event):
 func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	
+	if is_on_floor():
+		jumps_left = MAX_JUMPS
+	
+	if Input.is_action_just_pressed("jump"):
 		velocity.y = JUMP_VELOCITY
+		jumps_left -= 1
 	
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
@@ -92,6 +99,7 @@ func die():
 func respawn():
 	global_position = checkpoint_position
 	velocity = Vector3.ZERO
+	jumps_left = MAX_JUMPS
 	is_dead = false
 
 func game_over():
