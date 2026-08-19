@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://djdip6f085w0o"]
+
+[ext_resource type="PackedScene" uid="uid://btrmjyprj5xq6" path="res://assets/characters/Player/animal-fox.glb" id="1_8x0u3"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7vpcr"]
+animation = &"gesture-positive"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8x0u3"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kpck0"]
+animation = &"run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_b2cxc"]
+animation = &"static"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_k0xb2"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rxxu0"]
+xfade_time = 0.2
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wyljk"]
+xfade_time = 0.2
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_somxj"]
+xfade_time = 0.2
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pcpmy"]
+xfade_time = 0.2
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_slltw"]
+xfade_time = 0.2
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w4hu6"]
+xfade_time = 0.2
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tiyt8"]
+xfade_time = 0.2
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_15dwj"]
+xfade_time = 0.2
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dojxi"]
+xfade_time = 0.2
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_25kt7"]
+xfade_time = 0.2
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m3odi"]
+xfade_time = 0.2
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7vpcr"]
+xfade_time = 0.2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_5glgx"]
+states/Start/position = Vector2(134, 100)
+states/gesture-positive/node = SubResource("AnimationNodeAnimation_7vpcr")
+states/gesture-positive/position = Vector2(543, 198)
+states/idle/node = SubResource("AnimationNodeAnimation_8x0u3")
+states/idle/position = Vector2(256, 100)
+states/run/node = SubResource("AnimationNodeAnimation_kpck0")
+states/run/position = Vector2(593, 100)
+states/static/node = SubResource("AnimationNodeAnimation_b2cxc")
+states/static/position = Vector2(406, 28)
+states/walk/node = SubResource("AnimationNodeAnimation_k0xb2")
+states/walk/position = Vector2(412, 100)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_rxxu0"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_wyljk"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_somxj"), "walk", "run", SubResource("AnimationNodeStateMachineTransition_pcpmy"), "run", "walk", SubResource("AnimationNodeStateMachineTransition_slltw"), "static", "idle", SubResource("AnimationNodeStateMachineTransition_w4hu6"), "static", "walk", SubResource("AnimationNodeStateMachineTransition_tiyt8"), "static", "run", SubResource("AnimationNodeStateMachineTransition_15dwj"), "walk", "gesture-positive", SubResource("AnimationNodeStateMachineTransition_dojxi"), "run", "gesture-positive", SubResource("AnimationNodeStateMachineTransition_25kt7"), "idle", "gesture-positive", SubResource("AnimationNodeStateMachineTransition_m3odi"), "gesture-positive", "static", SubResource("AnimationNodeStateMachineTransition_7vpcr")]
+graph_offset = Vector2(86.906075, 0)
+
+[node name="animal-fox2" unique_id=1796462518 instance=ExtResource("1_8x0u3")]
+
+[node name="root" parent="animal-fox" parent_id_path=PackedInt32Array(440168781) index="0" unique_id=167260288]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
+
+[node name="body" parent="animal-fox/root" index="0" unique_id=400450158]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="tail" parent="animal-fox/root/body" index="0" unique_id=859910938]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0.53749996, -0.4950962)
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=1737695819]
+tree_root = SubResource("AnimationNodeStateMachine_5glgx")
+anim_player = NodePath("../AnimationPlayer")

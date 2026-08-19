@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://dfblwaak7xqs1"]
+
+[ext_resource type="PackedScene" uid="uid://din4jb3wijchw" path="res://scenes/Platforms/platform.tscn" id="1_xxpsm"]
+[ext_resource type="PackedScene" uid="uid://dqresirb884u7" path="res://scenes/Player/player.tscn" id="2_j85eu"]
+[ext_resource type="PackedScene" uid="uid://dtnw8guevhw2r" path="res://scenes/Collectible/ring.tscn" id="3_4p1o3"]
+[ext_resource type="PackedScene" uid="uid://b7vtg7sgi3wou" path="res://scenes/Interactable/checkpoint.tscn" id="4_14nfc"]
+[ext_resource type="PackedScene" uid="uid://cpyrqdc5yb01n" path="res://scenes/Hazards/spike_hazard.tscn" id="5_ngn3o"]
+[ext_resource type="PackedScene" uid="uid://bhkdjyjyafc4n" path="res://scenes/Hazards/moving_hazard.tscn" id="6_iiv34"]
+[ext_resource type="PackedScene" uid="uid://dopuk7ndch3l0" path="res://scenes/Platforms/moving_platform.tscn" id="7_vtd0g"]
+[ext_resource type="PackedScene" uid="uid://cqrr18nwrxbiq" path="res://scenes/Interactable/bounce_pad.tscn" id="8_hk2jt"]
+[ext_resource type="Script" uid="uid://dy5kx1x7sa4py" path="res://scripts/HUD/hud.gd" id="9_5gowt"]
+
+[node name="Level1" type="Node3D" unique_id=1654974197]
+
+[node name="Platform" parent="." unique_id=1003336250 instance=ExtResource("1_xxpsm")]
+transform = Transform3D(1.1964968, 0, 0, 0, 1.1964968, 0, 0, 0, 1.1964968, 0, 0.39769268, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1174930809]
+transform = Transform3D(0.5956385, 0.63187957, -0.4959264, 0.13173604, 0.5321928, 0.8363112, 0.79237646, -0.56347054, 0.23375322, -6.7096343, 9.009928, 2.4747252)
+
+[node name="Player" parent="." unique_id=2118992186 instance=ExtResource("2_j85eu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.021, 1.7, 0)
+
+[node name="Rings" type="Node3D" parent="." unique_id=1883530061]
+
+[node name="Ring" parent="Rings" unique_id=580698755 instance=ExtResource("3_4p1o3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.534, 0.5, 0)
+
+[node name="Ring2" parent="Rings" unique_id=1938458914 instance=ExtResource("3_4p1o3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.679455, 0.5, 0)
+
+[node name="Ring3" parent="Rings" unique_id=1972673081 instance=ExtResource("3_4p1o3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.576294, 0.57690644, -0.24098396)
+
+[node name="Checkpoint" parent="." unique_id=98324273 instance=ExtResource("4_14nfc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.583, 0.5, 0.087)
+
+[node name="Platform2" parent="." unique_id=755455893 instance=ExtResource("1_xxpsm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.203, 0.25, 0)
+
+[node name="Platform3" parent="." unique_id=822757200 instance=ExtResource("1_xxpsm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.171, 0.25, 0)
+
+[node name="SpikeHazard" parent="." unique_id=939330507 instance=ExtResource("5_ngn3o")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 6.036917, 1.1148677, -1.6330367)
+
+[node name="MovingHazard" parent="." unique_id=1236582225 instance=ExtResource("6_iiv34")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.743, 1, 0)
+
+[node name="MovingPlatform" parent="." unique_id=1437887413 instance=ExtResource("7_vtd0g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.681759, 0, 0)
+
+[node name="BouncePad" parent="." unique_id=716837622 instance=ExtResource("8_hk2jt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, 0)
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=510913633]
+script = ExtResource("9_5gowt")
+
+[node name="RingLabel" type="Label" parent="HUD" unique_id=1509702340]
+offset_left = 21.0
+offset_top = 21.0
+offset_right = 148.0
+offset_bottom = 76.0
+
+[node name="LivesLabel" type="Label" parent="HUD" unique_id=348366155]
+offset_left = 20.0
+offset_top = 58.0
+offset_right = 141.0
+offset_bottom = 107.0

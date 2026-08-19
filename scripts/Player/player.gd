@@ -13,8 +13,8 @@ var jumps_left := MAX_JUMPS
 
 @export var sens := 0.5
 @export var max_lives := 3
-var lives := max_lives
 
+var lives := max_lives
 var checkpoint_position : Vector3
 var is_dead := false
 
@@ -25,6 +25,14 @@ var is_dead := false
 
 var animation_playback
 
+var state_machine: PlayerStateMachine
+
+var idle_state: PlayerIdleState
+var walk_state: PlayerWalkState
+var run_state: PlayerRunState
+var jump_state: PlayerJumpState
+var fall_state: PlayerFallState
+
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	checkpoint_position = global_position
@@ -32,10 +40,17 @@ func _ready():
 	
 	animation_tree.active = true
 	animation_playback = animation_tree.get("parameters/playback")
-	animation_playback.travel("idle")
 	
 	mesh.rotation.y += PI
-
+	
+	idle_state = PlayerIdleState.new(self)
+	walk_state = PlayerWalkState.new(self)
+	run_state = PlayerRunState.new(self)
+	jump_state = PlayerJumpState.new(self)
+	fall_state = PlayerFallState.new(self)
+	
+	state_machine = PlayerStateMachine.new()
+	state_machine.initialize(idle_state)
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -46,13 +61,6 @@ func _input(event):
 func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-	
-	if is_on_floor():
-		jumps_left = MAX_JUMPS
-	
-	if Input.is_action_just_pressed("jump") and jumps_left > 0:
-		velocity.y = JUMP_VELOCITY
-		jumps_left -= 1
 	
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
@@ -83,16 +91,11 @@ func _physics_process(delta):
 			atan2(-direction.x, -direction.z) + PI,
 			delta * 10
 		)
-		
-		if is_running:
-			animation_playback.travel("run")
-		else:
-			animation_playback.travel("walk")
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
-		
-		animation_playback.travel("idle")
+	
+	state_machine.physics_update(delta)
 	
 	move_and_slide()
 	
@@ -125,3 +128,10 @@ func game_over():
 
 func set_checkpoint(new_position: Vector3):
 	checkpoint_position = new_position
+
+func  play_animation(animation_name: String) -> void:
+	animation_playback.travel(animation_name)
+
+func is_moving() -> bool:
+	var input_dir = Input.get_vector("left", "right", "down", "up")
+	return input_dir.length() > 0.0

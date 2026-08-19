@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b7vtg7sgi3wou"]
 
-[ext_resource type="Script" uid="uid://by318uxm3wx4i" path="res://checkpoint.gd" id="1_luqgl"]
+[ext_resource type="Script" uid="uid://by318uxm3wx4i" path="res://scripts/Interactable/checkpoint.gd" id="1_luqgl"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_f3f7h"]
 height = 1.1875

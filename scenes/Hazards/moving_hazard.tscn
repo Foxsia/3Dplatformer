@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bhkdjyjyafc4n"]
 
-[ext_resource type="Script" uid="uid://dqk8l2qu2ivd7" path="res://moving_hazard.gd" id="1_4hbcv"]
+[ext_resource type="Script" uid="uid://dqk8l2qu2ivd7" path="res://scripts/Hazards/moving_hazard.gd" id="1_4hbcv"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_5glgx"]
 radius = 0.4

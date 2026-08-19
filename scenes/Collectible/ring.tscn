@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dtnw8guevhw2r"]
 
-[ext_resource type="Script" uid="uid://b0eibe424x3ei" path="res://ring.gd" id="1_ln3uk"]
+[ext_resource type="Script" uid="uid://b0eibe424x3ei" path="res://scripts/Collectible/ring.gd" id="1_ln3uk"]
 
 [sub_resource type="TorusMesh" id="TorusMesh_0vgel"]
 

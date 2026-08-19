@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dqresirb884u7"]
 
-[ext_resource type="Script" uid="uid://dq6q3ptdo25u3" path="res://player.gd" id="1_4flbx"]
-[ext_resource type="PackedScene" uid="uid://djdip6f085w0o" path="res://fox.tscn" id="2_onrkg"]
+[ext_resource type="Script" uid="uid://dq6q3ptdo25u3" path="res://scripts/Player/player.gd" id="1_4flbx"]
+[ext_resource type="PackedScene" uid="uid://djdip6f085w0o" path="res://scenes/Player/fox.tscn" id="2_onrkg"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_8x0u3"]
 radius = 0.51738167
@@ -28,10 +28,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.34467936, -2.0992727)
 
 [node name="animal-fox2" parent="." unique_id=1796462518 instance=ExtResource("2_onrkg")]
 
-[node name="body" parent="animal-fox2/animal-fox/root" parent_id_path=PackedInt32Array(1796462518, 1324482158) index="0" unique_id=1997069344]
+[node name="body" parent="animal-fox2/animal-fox/root" parent_id_path=PackedInt32Array(1796462518, 167260288) index="0" unique_id=400450158]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 1.573182e-08, 0.18124998, -3.8083503e-08)
 
-[node name="tail" parent="animal-fox2/animal-fox/root/body" index="0" unique_id=2124812744]
+[node name="tail" parent="animal-fox2/animal-fox/root/body" index="0" unique_id=859910938]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0.53749996, -0.4950962)
 
 [node name="AnimationTree" parent="animal-fox2" index="2" unique_id=1737695819]

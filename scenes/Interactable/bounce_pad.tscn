@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cqrr18nwrxbiq"]
 
-[ext_resource type="Script" uid="uid://d27oter5lgwwc" path="res://bounce_pad.gd" id="1_g6spo"]
+[ext_resource type="Script" uid="uid://d27oter5lgwwc" path="res://scripts/Interactable/bounce_pad.gd" id="1_g6spo"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_5glgx"]
 size = Vector3(2, 0.25, 2)
