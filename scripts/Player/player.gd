@@ -89,7 +89,12 @@ func _physics_process(delta):
 	if direction != Vector3.ZERO:
 		velocity.x = direction.x * SPEED * speed_multiplier
 		velocity.z = direction.z * SPEED * speed_multiplier
-		raycast.look_at(raycast.global_position + direction, Vector3.UP)
+		var target_rotation = atan2(direction.x, direction.z) + PI
+		raycast.rotation.y = lerp_angle(
+			raycast.rotation.y,
+			target_rotation,
+			delta * 10.0
+		)
 
 		mesh.rotation.y = lerp_angle(
 			mesh.rotation.y,
@@ -106,6 +111,13 @@ func _physics_process(delta):
 	
 	if global_position.y < -10:
 		die()
+	
+	if Input.is_action_just_pressed("interact"):
+		if raycast.is_colliding():
+			var object = raycast.get_collider()
+			
+			if object.has_method("activate"):
+				object.activate()
 
 
 func die():

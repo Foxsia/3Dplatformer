@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://cujfbqmacn182"]
+
+[ext_resource type="PackedScene" uid="uid://djadi1egti20x" path="res://assets/characters/NPCs/animal-panda.glb" id="1_d8nx8"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_urqp6"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5glgx"]
+radius = 1.0
+
+[node name="Panda" type="StaticBody3D" unique_id=1301483303]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=764016104]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.52809966, 0)
+shape = SubResource("SphereShape3D_urqp6")
+
+[node name="InteractionArea" type="Area3D" parent="." unique_id=1223904014]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea" unique_id=1856268001]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.52836657, 0)
+shape = SubResource("SphereShape3D_5glgx")
+
+[node name="Label3D" type="Label3D" parent="." unique_id=1445570849]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5921535, 0)
+visible = false
+text = "[E] Talk"
+
+[node name="animal-panda2" parent="." unique_id=938776085 instance=ExtResource("1_d8nx8")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
+
+[editable path="animal-panda2"]

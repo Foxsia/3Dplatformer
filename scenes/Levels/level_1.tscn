@@ -11,17 +11,22 @@
 [ext_resource type="Script" uid="uid://dy5kx1x7sa4py" path="res://scripts/HUD/hud.gd" id="9_5gowt"]
 [ext_resource type="PackedScene" uid="uid://bm11rxr3ltjnq" path="res://scenes/Enemies/enemy.tscn" id="10_4p1o3"]
 [ext_resource type="PackedScene" uid="uid://bdcavryxcw354" path="res://scenes/wall.tscn" id="10_j85eu"]
+[ext_resource type="PackedScene" uid="uid://b6d4dt5eq06qa" path="res://scenes/Interactable/puzzle_button.tscn" id="12_ngn3o"]
+[ext_resource type="PackedScene" uid="uid://cujfbqmacn182" path="res://scenes/NPCs/panda.tscn" id="13_iiv34"]
 
 [node name="Level1" type="Node3D" unique_id=1654974197]
 
 [node name="Platform" parent="." unique_id=1003336250 instance=ExtResource("1_xxpsm")]
-transform = Transform3D(1.1964968, 0, 0, 0, 1.1964968, 0, 0, 0, 1.1964968, 0, 0.39769268, 0)
+transform = Transform3D(1.1964968, 0, 0, 0, 1.1964968, 0, 0, 0, 1.1964968, 0, 0, 0)
+
+[node name="Platform6" parent="." unique_id=1277333081 instance=ExtResource("1_xxpsm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.8172584)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1174930809]
 transform = Transform3D(0.5956385, 0.63187957, -0.4959264, 0.13173604, 0.5321928, 0.8363112, 0.79237646, -0.56347054, 0.23375322, -6.7096343, 9.009928, 2.4747252)
 
 [node name="Player" parent="." unique_id=2118992186 instance=ExtResource("2_j85eu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.021, 0.7914815, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.021, 0.42397904, 0)
 
 [node name="Rings" type="Node3D" parent="." unique_id=1883530061]
 
@@ -53,10 +58,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.743, 1, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.681759, 0, 0)
 
 [node name="BouncePad" parent="." unique_id=716837622 instance=ExtResource("8_hk2jt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9507036, 0.438272, 0)
 
 [node name="Wall" parent="." unique_id=1170687100 instance=ExtResource("10_j85eu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07193875, 2.196817, -2.55658)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07193875, 1.6801944, -2.55658)
 
 [node name="Platform4" parent="." unique_id=1936863983 instance=ExtResource("1_xxpsm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.3348465, 0, 0)
@@ -89,3 +94,12 @@ offset_left = 20.0
 offset_top = 58.0
 offset_right = 141.0
 offset_bottom = 107.0
+
+[node name="PuzzleButton" parent="." unique_id=1262452332 instance=ExtResource("12_ngn3o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.280712, 0.25, 0.077804565)
+
+[node name="PuzzleButton2" parent="." unique_id=147265099 instance=ExtResource("12_ngn3o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.481194, 0.25, 6.5914288)
+
+[node name="Panda" parent="." unique_id=1301483303 instance=ExtResource("13_iiv34")]
+transform = Transform3D(-0.8166819, 0, -0.5770881, 0, 1, 0, 0.5770881, 0, -0.8166819, 0.7042208, 0.34808218, 6.81734)

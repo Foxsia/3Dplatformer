@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://b6d4dt5eq06qa"]
+
+[ext_resource type="Script" uid="uid://bv6e5fs6knmtb" path="res://scenes/Interactable/puzzle_button.gd" id="1_tm248"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_6tslr"]
+size = Vector3(0.5, 0.25, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f3f7h"]
+albedo_color = Color(0.13333334, 0.56078434, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0vgel"]
+size = Vector3(0.5, 0.25, 0.5)
+
+[node name="PuzzleButton" type="StaticBody3D" unique_id=1262452332]
+script = ExtResource("1_tm248")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1720449431]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13339758, 0)
+mesh = SubResource("BoxMesh_6tslr")
+surface_material_override/0 = SubResource("StandardMaterial3D_f3f7h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=208909095]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.122463346, 0)
+shape = SubResource("BoxShape3D_0vgel")
