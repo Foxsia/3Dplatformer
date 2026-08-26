@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dopuk7ndch3l0" path="res://scenes/Platforms/moving_platform.tscn" id="7_vtd0g"]
 [ext_resource type="PackedScene" uid="uid://cqrr18nwrxbiq" path="res://scenes/Interactable/bounce_pad.tscn" id="8_hk2jt"]
 [ext_resource type="Script" uid="uid://dy5kx1x7sa4py" path="res://scripts/HUD/hud.gd" id="9_5gowt"]
+[ext_resource type="PackedScene" uid="uid://bm11rxr3ltjnq" path="res://scenes/Enemies/enemy.tscn" id="10_4p1o3"]
 [ext_resource type="PackedScene" uid="uid://bdcavryxcw354" path="res://scenes/wall.tscn" id="10_j85eu"]
 
 [node name="Level1" type="Node3D" unique_id=1654974197]
@@ -20,7 +21,7 @@ transform = Transform3D(1.1964968, 0, 0, 0, 1.1964968, 0, 0, 0, 1.1964968, 0, 0.
 transform = Transform3D(0.5956385, 0.63187957, -0.4959264, 0.13173604, 0.5321928, 0.8363112, 0.79237646, -0.56347054, 0.23375322, -6.7096343, 9.009928, 2.4747252)
 
 [node name="Player" parent="." unique_id=2118992186 instance=ExtResource("2_j85eu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.021, 1.7, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.021, 0.7914815, 0)
 
 [node name="Rings" type="Node3D" parent="." unique_id=1883530061]
 
@@ -54,6 +55,26 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.681759, 0, 0)
 [node name="BouncePad" parent="." unique_id=716837622 instance=ExtResource("8_hk2jt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, 0)
 
+[node name="Wall" parent="." unique_id=1170687100 instance=ExtResource("10_j85eu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07193875, 2.196817, -2.55658)
+
+[node name="Platform4" parent="." unique_id=1936863983 instance=ExtResource("1_xxpsm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.3348465, 0, 0)
+
+[node name="Platform5" parent="." unique_id=2097847758 instance=ExtResource("1_xxpsm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.3348465, 0, 4.883932)
+
+[node name="PatrolPoint1" type="Marker3D" parent="." unique_id=1956271663]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.881945, -0.043236256, 6.7274914)
+
+[node name="PatrolPoint2" type="Marker3D" parent="." unique_id=1247819202]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.686308, 0, -1.9168036)
+
+[node name="Enemy" parent="." unique_id=1506305100 node_paths=PackedStringArray("patrol_point_1", "patrol_point_2") instance=ExtResource("10_4p1o3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.368982, 0.31626177, 0)
+patrol_point_1 = NodePath("../PatrolPoint1")
+patrol_point_2 = NodePath("../PatrolPoint2")
+
 [node name="HUD" type="CanvasLayer" parent="." unique_id=510913633]
 script = ExtResource("9_5gowt")
 
@@ -68,6 +89,3 @@ offset_left = 20.0
 offset_top = 58.0
 offset_right = 141.0
 offset_bottom = 107.0
-
-[node name="Wall" parent="." unique_id=1170687100 instance=ExtResource("10_j85eu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07193875, 2.196817, -2.55658)

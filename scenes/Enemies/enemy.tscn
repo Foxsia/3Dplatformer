@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bm11rxr3ltjnq"]
+
+[ext_resource type="PackedScene" uid="uid://ba56r5mdbt40d" path="res://assets/characters/Enemies/animal-bee.glb" id="1_5alqo"]
+[ext_resource type="Script" uid="uid://m7xvq6v1oi4m" path="res://scenes/Enemies/enemy.gd" id="1_iq8kd"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5glgx"]
+
+[node name="Enemy" type="CharacterBody3D" unique_id=1506305100]
+script = ExtResource("1_iq8kd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=686229698]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4652958, 0)
+shape = SubResource("SphereShape3D_5glgx")
+
+[node name="animal-bee2" parent="." unique_id=1440341426 instance=ExtResource("1_5alqo")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
+
+[node name="body" parent="animal-bee2/animal-bee/root" parent_id_path=PackedInt32Array(1440341426, 463626531) index="0" unique_id=65800389]
+transform = Transform3D(0.9824088, 0.17322515, 0.069756456, -0.17364816, 0.98480767, -4.656613e-10, -0.0686967, -0.012113079, 0.9975641, 1.573182e-08, 0.18124998, -3.8083503e-08)
+
+[node name="wing-left" parent="animal-bee2/animal-bee/root/body" index="0" unique_id=609284268]
+transform = Transform3D(0.76604444, 0.6427875, 0, -0.6427875, 0.76604444, 0, 0, 0, 1, 0.19649982, 1.3192949, -0.022000015)
+
+[node name="wing-right" parent="animal-bee2/animal-bee/root/body" index="1" unique_id=1083565565]
+transform = Transform3D(0.76604444, -0.6427875, 0, 0.6427875, 0.76604444, 0, 0, 0, 1, -0.19649982, 1.3192949, -0.022000015)
+
+[editable path="animal-bee2"]

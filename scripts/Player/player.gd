@@ -25,6 +25,8 @@ var is_dead := false
 
 @onready var raycast: RayCast3D = $RayCast3D
 
+@onready var spring_arm: SpringArm3D = $CameraOrigin/CameraPitch/SpringArm3D
+
 var animation_playback
 
 var state_machine: PlayerStateMachine
@@ -107,6 +109,7 @@ func _physics_process(delta):
 	
 	if raycast.is_colliding():
 		print("HIT: ", raycast.get_collider().name)
+
 
 func die():
 	if is_dead:
