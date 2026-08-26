@@ -106,9 +106,6 @@ func _physics_process(delta):
 	
 	if global_position.y < -10:
 		die()
-	
-	if raycast.is_colliding():
-		print("HIT: ", raycast.get_collider().name)
 
 
 func die():
