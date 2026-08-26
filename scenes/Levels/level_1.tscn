@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dopuk7ndch3l0" path="res://scenes/Platforms/moving_platform.tscn" id="7_vtd0g"]
 [ext_resource type="PackedScene" uid="uid://cqrr18nwrxbiq" path="res://scenes/Interactable/bounce_pad.tscn" id="8_hk2jt"]
 [ext_resource type="Script" uid="uid://dy5kx1x7sa4py" path="res://scripts/HUD/hud.gd" id="9_5gowt"]
+[ext_resource type="PackedScene" uid="uid://bdcavryxcw354" path="res://scenes/wall.tscn" id="10_j85eu"]
 
 [node name="Level1" type="Node3D" unique_id=1654974197]
 
@@ -67,3 +68,6 @@ offset_left = 20.0
 offset_top = 58.0
 offset_right = 141.0
 offset_bottom = 107.0
+
+[node name="Wall" parent="." unique_id=1170687100 instance=ExtResource("10_j85eu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07193875, 2.196817, -2.55658)

@@ -23,6 +23,8 @@ var is_dead := false
 @onready var mesh = get_node("animal-fox2/animal-fox")
 @onready var animation_tree = get_node("animal-fox2/AnimationTree")
 
+@onready var raycast: RayCast3D = $RayCast3D
+
 var animation_playback
 
 var state_machine: PlayerStateMachine
@@ -85,6 +87,7 @@ func _physics_process(delta):
 	if direction != Vector3.ZERO:
 		velocity.x = direction.x * SPEED * speed_multiplier
 		velocity.z = direction.z * SPEED * speed_multiplier
+		raycast.look_at(raycast.global_position + direction, Vector3.UP)
 
 		mesh.rotation.y = lerp_angle(
 			mesh.rotation.y,
@@ -101,6 +104,9 @@ func _physics_process(delta):
 	
 	if global_position.y < -10:
 		die()
+	
+	if raycast.is_colliding():
+		print("HIT: ", raycast.get_collider().name)
 
 func die():
 	if is_dead:
@@ -123,7 +129,6 @@ func respawn():
 	is_dead = false
 
 func game_over():
-	print("GameOVER")
 	get_tree().reload_current_scene.call_deferred()
 
 func set_checkpoint(new_position: Vector3):

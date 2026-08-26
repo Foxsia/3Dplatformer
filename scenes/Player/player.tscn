@@ -26,6 +26,12 @@ margin = 0.5
 [node name="Camera3D" type="Camera3D" parent="CameraOrigin/CameraPitch/SpringArm3D" unique_id=1570792498]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.34467936, -2.0992727)
 
+[node name="RayCast3D" type="RayCast3D" parent="." unique_id=1920251]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26420927, 0)
+target_position = Vector3(0, 0, -2)
+collision_mask = 3
+collide_with_areas = true
+
 [node name="animal-fox2" parent="." unique_id=1796462518 instance=ExtResource("2_onrkg")]
 
 [node name="body" parent="animal-fox2/animal-fox/root" parent_id_path=PackedInt32Array(1796462518, 167260288) index="0" unique_id=400450158]
