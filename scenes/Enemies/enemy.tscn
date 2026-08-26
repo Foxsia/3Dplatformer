@@ -5,6 +5,8 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5glgx"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_5glgx"]
+
 [node name="Enemy" type="CharacterBody3D" unique_id=1506305100]
 script = ExtResource("1_iq8kd")
 
@@ -12,16 +14,23 @@ script = ExtResource("1_iq8kd")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4652958, 0)
 shape = SubResource("SphereShape3D_5glgx")
 
+[node name="DamageArea" type="Area3D" parent="." unique_id=105108616]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.016775966, 0.5562719, 0)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea" unique_id=525547635]
+shape = SubResource("BoxShape3D_5glgx")
+
 [node name="animal-bee2" parent="." unique_id=1440341426 instance=ExtResource("1_5alqo")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
 
 [node name="body" parent="animal-bee2/animal-bee/root" parent_id_path=PackedInt32Array(1440341426, 463626531) index="0" unique_id=65800389]
-transform = Transform3D(0.9824088, 0.17322515, 0.069756456, -0.17364816, 0.98480767, -4.656613e-10, -0.0686967, -0.012113079, 0.9975641, 1.573182e-08, 0.18124998, -3.8083503e-08)
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 1.573182e-08, 0.18124998, -3.8083503e-08)
 
 [node name="wing-left" parent="animal-bee2/animal-bee/root/body" index="0" unique_id=609284268]
-transform = Transform3D(0.76604444, 0.6427875, 0, -0.6427875, 0.76604444, 0, 0, 0, 1, 0.19649982, 1.3192949, -0.022000015)
+transform = Transform3D(0.49999985, -0.86602545, 0, 0.86602545, 0.49999985, 0, 0, 0, 1, 0.19649982, 1.3192949, -0.022000015)
 
 [node name="wing-right" parent="animal-bee2/animal-bee/root/body" index="1" unique_id=1083565565]
-transform = Transform3D(0.76604444, -0.6427875, 0, 0.6427875, 0.76604444, 0, 0, 0, 1, -0.19649982, 1.3192949, -0.022000015)
+transform = Transform3D(0.5, 0.8660253, 0, -0.8660253, 0.5, 0, 0, 0, 1, -0.19649982, 1.3192949, -0.022000015)
 
 [editable path="animal-bee2"]

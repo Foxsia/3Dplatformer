@@ -5,11 +5,14 @@ extends CharacterBody3D
 @export var patrol_point_2: Node3D
 @onready var mesh = $"animal-bee2/animal-bee/root"
 
+@onready var damage_area: Area3D = $DamageArea
+
 var current_target: Node3D
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready() -> void:
 	current_target = patrol_point_1
+	damage_area.body_entered.connect(_on_damage_area_body_entered)
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -36,3 +39,13 @@ func _physics_process(delta: float) -> void:
 			current_target = patrol_point_1
 	
 	move_and_slide()
+
+func _on_damage_area_body_entered(body: Node3D) -> void:
+	if not body.is_in_group("player"):
+		return
+	
+	if body.velocity.y < 0 and body.global_position.y > global_position.y + 0.3:
+		queue_free()
+		body.velocity.y = 7.0
+	else:
+		body.die()
