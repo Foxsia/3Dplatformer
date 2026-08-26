@@ -13,6 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://bdcavryxcw354" path="res://scenes/wall.tscn" id="10_j85eu"]
 [ext_resource type="PackedScene" uid="uid://b6d4dt5eq06qa" path="res://scenes/Interactable/puzzle_button.tscn" id="12_ngn3o"]
 [ext_resource type="PackedScene" uid="uid://cujfbqmacn182" path="res://scenes/NPCs/panda.tscn" id="13_iiv34"]
+[ext_resource type="Script" uid="uid://u3rvrfmp4gv7" path="res://scripts/puzzle_manager.gd" id="14_iiv34"]
+[ext_resource type="PackedScene" uid="uid://bhc4tc25ew7u3" path="res://scenes/gate.tscn" id="15_vtd0g"]
 
 [node name="Level1" type="Node3D" unique_id=1654974197]
 
@@ -95,11 +97,46 @@ offset_top = 58.0
 offset_right = 141.0
 offset_bottom = 107.0
 
-[node name="PuzzleButton" parent="." unique_id=1262452332 instance=ExtResource("12_ngn3o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.280712, 0.25, 0.077804565)
+[node name="DialogueBox" type="Panel" parent="HUD" unique_id=2057569243]
+offset_left = 197.0
+offset_top = 488.0
+offset_right = 954.0
+offset_bottom = 634.0
 
-[node name="PuzzleButton2" parent="." unique_id=147265099 instance=ExtResource("12_ngn3o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.481194, 0.25, 6.5914288)
+[node name="NameLabel" type="Label" parent="HUD/DialogueBox" unique_id=321901826]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
 
-[node name="Panda" parent="." unique_id=1301483303 instance=ExtResource("13_iiv34")]
+[node name="DialogueLabel" type="Label" parent="HUD/DialogueBox" unique_id=918512672]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 25.0
+offset_right = 42.0
+offset_bottom = 48.0
+
+[node name="PuzzleButton" parent="." unique_id=1262452332 node_paths=PackedStringArray("puzzle_manager") instance=ExtResource("12_ngn3o")]
+transform = Transform3D(-0.047972184, 0, -0.9988487, 0, 1, 0, 0.9988487, 0, -0.047972184, 30.634682, 0.25, 0.077804565)
+puzzle_manager = NodePath("../PuzzleManager")
+
+[node name="PuzzleButton2" parent="." unique_id=147265099 node_paths=PackedStringArray("puzzle_manager") instance=ExtResource("12_ngn3o")]
+transform = Transform3D(-0.8108619, 0, 0.58523756, 0, 1, 0, -0.58523756, 0, -0.8108619, -10.481194, 0.25, 6.5914288)
+puzzle_manager = NodePath("../PuzzleManager")
+
+[node name="Panda" parent="." unique_id=1301483303 node_paths=PackedStringArray("dialogue_ui") instance=ExtResource("13_iiv34")]
 transform = Transform3D(-0.8166819, 0, -0.5770881, 0, 1, 0, 0.5770881, 0, -0.8166819, 0.7042208, 0.34808218, 6.81734)
+dialogue_ui = NodePath("../HUD")
+
+[node name="PuzzleManager" type="Node" parent="." unique_id=1004038651 node_paths=PackedStringArray("gate", "panda")]
+script = ExtResource("14_iiv34")
+gate = NodePath("../Gate")
+panda = NodePath("../Panda")
+
+[node name="Gate" parent="." unique_id=1485193020 instance=ExtResource("15_vtd0g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0071806908, 1.714081, 9.127356)
+
+[node name="Platform7" parent="." unique_id=401523459 instance=ExtResource("1_xxpsm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 14.826957)
+
+[node name="Platform8" parent="." unique_id=359457609 instance=ExtResource("1_xxpsm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.014841, 0, 0)

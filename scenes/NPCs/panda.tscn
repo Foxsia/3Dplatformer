@@ -1,13 +1,18 @@
 [gd_scene format=3 uid="uid://cujfbqmacn182"]
 
 [ext_resource type="PackedScene" uid="uid://djadi1egti20x" path="res://assets/characters/NPCs/animal-panda.glb" id="1_d8nx8"]
+[ext_resource type="Script" uid="uid://dtpqt7et2r2ys" path="res://scripts/NPCs/panda.gd" id="1_sd48c"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_urqp6"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5glgx"]
 radius = 1.0
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_urqp6"]
+animation = &"idle"
+
 [node name="Panda" type="StaticBody3D" unique_id=1301483303]
+script = ExtResource("1_sd48c")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=764016104]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.52809966, 0)
@@ -26,5 +31,12 @@ text = "[E] Talk"
 
 [node name="animal-panda2" parent="." unique_id=938776085 instance=ExtResource("1_d8nx8")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
+
+[node name="body" parent="animal-panda2/animal-panda/root" parent_id_path=PackedInt32Array(938776085, 1423005234) index="0" unique_id=1097234772]
+transform = Transform3D(0.9824088, 0.17322515, 0.069756456, -0.17364816, 0.98480767, -4.656613e-10, -0.0686967, -0.012113079, 0.9975641, 1.573182e-08, 0.18124998, -3.8083503e-08)
+
+[node name="AnimationTree" type="AnimationTree" parent="animal-panda2" unique_id=107720520]
+tree_root = SubResource("AnimationNodeAnimation_urqp6")
+anim_player = NodePath("../AnimationPlayer")
 
 [editable path="animal-panda2"]
