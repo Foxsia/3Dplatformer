@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://bndx635f3qbt3"]
+
+[ext_resource type="Script" uid="uid://cb33ffsk4lb6y" path="res://scripts/UI/win_screen.gd" id="1_ofhcv"]
+
+[node name="WinScreen" type="Control" unique_id=1504636874]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ofhcv")
+
+[node name="Background" type="ColorRect" parent="." unique_id=932103358]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1236755011]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1857154958]
+layout_mode = 2
+text = "LEVEL COMPLETE!"
+
+[node name="Button" type="Button" parent="VBoxContainer" unique_id=1454511455]
+layout_mode = 2
+text = "NEXT LEVEL"
+
+[node name="Button2" type="Button" parent="VBoxContainer" unique_id=502415445]
+layout_mode = 2
+text = "MAIN MENU"
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_next_level_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_main_menu_pressed"]

@@ -8,4 +8,4 @@ func _on_body_entered(body):
 		level_complete()
 
 func level_complete():
-	get_tree().change_scene_to_file("")
+	get_tree().change_scene_to_file.call_deferred("res://scenes/UI/win_screen.tscn")
