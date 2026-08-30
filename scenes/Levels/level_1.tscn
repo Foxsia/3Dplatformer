@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://u3rvrfmp4gv7" path="res://scripts/puzzle_manager.gd" id="14_iiv34"]
 [ext_resource type="PackedScene" uid="uid://bhc4tc25ew7u3" path="res://scenes/gate.tscn" id="15_vtd0g"]
 [ext_resource type="PackedScene" uid="uid://c1xlwnln8wxg4" path="res://scenes/Platforms/rotating_platform.tscn" id="16_hk2jt"]
+[ext_resource type="PackedScene" uid="uid://dtgijhceq7mir" path="res://scenes/Interactable/goal.tscn" id="17_5gowt"]
 
 [node name="Level1" type="Node3D" unique_id=1654974197]
 
@@ -147,3 +148,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2247014, 0, 15.24658)
 
 [node name="Checkpoint" parent="AnimatableBody3D" unique_id=307874523 instance=ExtResource("4_14nfc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8587832, 0, 0)
+
+[node name="Platform10" parent="." unique_id=1438347204 instance=ExtResource("1_xxpsm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.604792, 0, 15.010925)
+
+[node name="Goal" parent="Platform10" unique_id=110471869 instance=ExtResource("17_5gowt")]
+transform = Transform3D(0.021541912, 0, 0.99976796, 0, 1, 0, -0.99976796, 0, 0.021541912, 1.7081966, 0.75, -0.5068741)
+
+[node name="Platform9" parent="." unique_id=548922257 instance=ExtResource("1_xxpsm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.060306, 0, 15.052551)

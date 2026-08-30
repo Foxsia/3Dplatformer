@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dtgijhceq7mir"]
+
+[ext_resource type="Script" uid="uid://d63u03b78s6v" path="res://scripts/Interactable/goal.gd" id="1_owm6w"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_0vgel"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f3f7h"]
+albedo_color = Color(0.25882354, 0.43137255, 0.43137255, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qkrtn"]
+radius = 0.54160535
+
+[node name="Goal" type="Area3D" unique_id=110471869]
+script = ExtResource("1_owm6w")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1945877558]
+mesh = SubResource("PrismMesh_0vgel")
+surface_material_override/0 = SubResource("StandardMaterial3D_f3f7h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=639814213]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.09490025, 0)
+shape = SubResource("SphereShape3D_qkrtn")
