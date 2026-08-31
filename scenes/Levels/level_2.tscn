@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://cbtw5qdgrte8d"]
 
 [ext_resource type="PackedScene" uid="uid://din4jb3wijchw" path="res://scenes/Platforms/platform.tscn" id="1_wb27n"]
+[ext_resource type="PackedScene" uid="uid://dqresirb884u7" path="res://scenes/Player/player.tscn" id="2_603ed"]
 
 [node name="Level2" type="Node3D" unique_id=1910944007]
 
 [node name="Platform" parent="." unique_id=1003336250 instance=ExtResource("1_wb27n")]
+
+[node name="Player" parent="." unique_id=2118992186 instance=ExtResource("2_603ed")]
