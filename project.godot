@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="3Dplatformer"
-run/main_scene="uid://dfblwaak7xqs1"
+run/main_scene="uid://ux501wphbnw5"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
