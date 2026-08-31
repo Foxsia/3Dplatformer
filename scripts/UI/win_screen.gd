@@ -2,12 +2,12 @@ extends Control
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-
-func _on_next_level_pressed():
+	
 	var completed_level = GameManager.current_level
 	
 	GameManager.complete_level(completed_level)
-	
+
+func _on_next_level_pressed():
 	var next_level = GameManager.current_level
 	
 	get_tree().change_scene_to_file(
