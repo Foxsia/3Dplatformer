@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://c1xlwnln8wxg4" path="res://scenes/Platforms/rotating_platform.tscn" id="16_hk2jt"]
 [ext_resource type="PackedScene" uid="uid://dtgijhceq7mir" path="res://scenes/Interactable/goal.tscn" id="17_5gowt"]
 
-[node name="Level1" type="Node3D" unique_id=1654974197]
+[node name="Level1" type="Node3D" unique_id=1654974197 groups=["level"]]
 
 [node name="Platform" parent="." unique_id=1003336250 instance=ExtResource("1_xxpsm")]
 transform = Transform3D(1.1964968, 0, 0, 0, 1.1964968, 0, 0, 0, 1.1964968, 0, 0, 0)
