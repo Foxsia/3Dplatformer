@@ -1,3 +1,26 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+
+# Visual Studio
+.vs/
+
+# C++ build output
+bin/
+cpp/build/
+
+# C++ compiled files
+*.obj
+*.dll
+*.exp
+*.lib
+
+# Godot generated GDExtension UID
+*.gdextension.uid
+
+# SCons
+cpp/.sconsign.dblite
+cpp/__pycache__/
+
+# Generated files
+cpp/src/gen/
