@@ -141,7 +141,7 @@ func respawn():
 	is_dead = false
 
 func game_over():
-	get_tree().change_scene_to_file("res://scenes/UI/game_over_screen.tscn")
+	get_tree().change_scene_to_file.call_deferred("res://scenes/UI/game_over_screen.tscn")
 
 func set_checkpoint(new_position: Vector3):
 	checkpoint_position = new_position
