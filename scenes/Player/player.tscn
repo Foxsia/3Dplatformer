@@ -8,8 +8,11 @@ radius = 0.51738167
 
 [node name="Player" type="CharacterBody3D" unique_id=2118992186]
 script = ExtResource("1_4flbx")
+sens = null
 
 [node name="HealthComponent" type="HealthComponent" parent="." unique_id=1125667405]
+
+[node name="MovementComponent" type="MovementComponent" parent="." unique_id=1460940913]
 
 [node name="BodyCol" type="CollisionShape3D" parent="." unique_id=1940123732]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.51763237, 0)

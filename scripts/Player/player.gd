@@ -1,11 +1,9 @@
 extends CharacterBody3D
 
-const SPEED := 5.0
 const JUMP_VELOCITY := 6
 const  MAX_JUMPS := 2
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-var speed_multiplier := 1.0
 var is_running := false
 var jumps_left := MAX_JUMPS
 
@@ -14,6 +12,7 @@ var checkpoint_position : Vector3
 var is_dead := false
 
 @onready var health_component: HealthComponent = $HealthComponent
+@onready var movement_component: MovementComponent = $MovementComponent
 
 @onready var pivot = $CameraOrigin
 @onready var pitch = $CameraOrigin/CameraPitch
@@ -68,10 +67,8 @@ func _physics_process(delta):
 		get_tree().quit()
 	
 	if Input.is_action_pressed("sprint"):
-		speed_multiplier = 2.0
 		is_running = true
 	else:
-		speed_multiplier = 1.0
 		is_running = false
 
 	var input_dir = Input.get_vector("left", "right", "up", "down")
@@ -85,8 +82,9 @@ func _physics_process(delta):
 
 	var direction = (right * input_dir.x - forward * input_dir.y).normalized()
 	if direction != Vector3.ZERO:
-		velocity.x = direction.x * SPEED * speed_multiplier
-		velocity.z = direction.z * SPEED * speed_multiplier
+		var movement_velocity = movement_component.calculate_velocity(direction, is_running)
+		velocity.x = movement_velocity.x
+		velocity.z = movement_velocity.z
 		var target_rotation = atan2(direction.x, direction.z) + PI
 		raycast.rotation.y = lerp_angle(
 			raycast.rotation.y,
@@ -100,8 +98,8 @@ func _physics_process(delta):
 			delta * 10
 		)
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, movement_component.get_speed())
+		velocity.z = move_toward(velocity.z, 0, movement_component.get_speed())
 	
 	state_machine.physics_update(delta)
 	
