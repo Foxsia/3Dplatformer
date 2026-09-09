@@ -1,7 +1,5 @@
 extends CharacterBody3D
 
-signal lives_changed(new_lives)
-
 const SPEED := 5.0
 const JUMP_VELOCITY := 6
 const  MAX_JUMPS := 2
@@ -12,11 +10,10 @@ var is_running := false
 var jumps_left := MAX_JUMPS
 
 @export var sens := 0.5
-@export var max_lives := 3
-
-var lives := max_lives
 var checkpoint_position : Vector3
 var is_dead := false
+
+@onready var health_component: HealthComponent = $HealthComponent
 
 @onready var pivot = $CameraOrigin
 @onready var pitch = $CameraOrigin/CameraPitch
@@ -55,6 +52,7 @@ func _ready():
 	
 	state_machine = PlayerStateMachine.new()
 	state_machine.initialize(idle_state)
+
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -125,11 +123,9 @@ func die():
 		return
 	
 	is_dead = true
-	lives -= 1
+	health_component.lose_life()
 	
-	lives_changed.emit(lives)
-	
-	if lives <= 0:
+	if health_component.get_lives() <= 0:
 		game_over()
 	else:
 		respawn()
