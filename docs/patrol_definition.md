@@ -12,7 +12,7 @@
 
 ## Boundaries
 
-###C++:
+### C++:
 
 - Calculates patrol direction
 - Checks distance to target
@@ -24,4 +24,5 @@
 - Switches between patrol points
 - Handles movement, gravity and animations
 - Handles player interaction
-The C++ component does not know about the Enemy or its scene
+
+## The C++ component does not know about the Enemy or its scene
