@@ -1,6 +1,7 @@
 #include "register_types.h"
 #include "health_component.h"
 #include "movement_component.h"
+#include "patrol_component.h"
 
 #include <gdextension_interface.h>
 #include <godot_cpp/core/class_db.hpp>
@@ -19,6 +20,7 @@ void initialize_gdextension_types(ModuleInitializationLevel p_level)
 	GDREGISTER_CLASS(ExampleClass);
 	GDREGISTER_CLASS(HealthComponent);
 	GDREGISTER_CLASS(MovementComponent);
+	GDREGISTER_CLASS(PatrolComponent);
 }
 
 void uninitialize_gdextension_types(ModuleInitializationLevel p_level) {

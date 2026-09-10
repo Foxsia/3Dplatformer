@@ -5,6 +5,7 @@ extends CharacterBody3D
 @export var patrol_point_2: Node3D
 @onready var mesh = $"animal-bee2"
 
+@onready var patrol_component: PatrolComponent = $PatrolComponent
 
 @onready var damage_area: Area3D = $DamageArea
 
@@ -29,9 +30,10 @@ func _physics_process(delta: float) -> void:
 	if current_target == null:
 		return
 	
-	var  direction = global_position.direction_to(current_target.global_position)
-	direction.y = 0
-	direction = direction.normalized()
+	var  direction = patrol_component.get_direction_to_target(
+		global_position,
+		current_target.global_position
+	)
 	
 	velocity.x = direction.x * speed
 	velocity.z = direction.z * speed
@@ -43,7 +45,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		animation_playback.travel("idle")
 	
-	if global_position.distance_to(current_target.global_position) < 0.5:
+	if patrol_component.has_reached_target(global_position, current_target.global_position):
 		if current_target == patrol_point_1:
 			current_target = patrol_point_2
 		else:
