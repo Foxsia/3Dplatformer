@@ -4,7 +4,8 @@
 
 namespace godot
 {
-	class MovementComponent : public Node {
+	class MovementComponent : public Node 
+	{
 		GDCLASS(MovementComponent, Node);
 
 	protected:

@@ -1,8 +1,10 @@
 #pragma once
 #include <godot_cpp/classes/node.hpp>
 
-namespace godot {
-	class PatrolComponent : public Node {
+namespace godot 
+{
+	class PatrolComponent : public Node 
+	{
 		GDCLASS(PatrolComponent, Node)
 
 	private:
