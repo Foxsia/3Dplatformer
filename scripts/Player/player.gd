@@ -12,6 +12,7 @@ var checkpoint_position : Vector3
 var is_dead := false
 
 @onready var ability_system = $AbilitySystem
+@onready var dash_ability = $DashAbility
 
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var movement_component: MovementComponent = $MovementComponent
@@ -39,6 +40,8 @@ func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	checkpoint_position = global_position
 	add_to_group("player")
+	
+	ability_system.register_ability(dash_ability)
 	
 	animation_tree.active = true
 	animation_playback = animation_tree.get("parameters/playback")
@@ -84,25 +87,35 @@ func _physics_process(delta):
 	right = right.normalized()
 
 	var direction = (right * input_dir.x - forward * input_dir.y).normalized()
-	if direction != Vector3.ZERO:
-		var movement_velocity = movement_component.calculate_velocity(direction, is_running)
-		velocity.x = movement_velocity.x
-		velocity.z = movement_velocity.z
-		var target_rotation = atan2(direction.x, direction.z) + PI
-		raycast.rotation.y = lerp_angle(
-			raycast.rotation.y,
-			target_rotation,
-			delta * 10.0
-		)
+	if not dash_ability.is_active():
+		if direction != Vector3.ZERO:
+			var movement_velocity = movement_component.calculate_velocity(direction, is_running)
+			velocity.x = movement_velocity.x
+			velocity.z = movement_velocity.z
+			var target_rotation = atan2(direction.x, direction.z) + PI
+			raycast.rotation.y = lerp_angle(
+				raycast.rotation.y,
+				target_rotation,
+				delta * 10.0
+			)
+			mesh.rotation.y = lerp_angle(
+				mesh.rotation.y,
+				atan2(-direction.x, -direction.z) + PI,
+				delta * 10
+			)
+		else:
+			velocity.x = move_toward(velocity.x, 0, movement_component.get_speed())
+			velocity.z = move_toward(velocity.z, 0, movement_component.get_speed())
+	
+	if Input.is_action_just_pressed("dash"):
+		var dash_direction = direction
+		if dash_direction == Vector3.ZERO:
+			dash_direction = -pivot.global_transform.basis.z
+			dash_direction.y = 0.0
+			dash_direction = dash_direction.normalized()
+		dash_ability.set_direction(dash_direction)
+		ability_system.request_activation(dash_ability)
 
-		mesh.rotation.y = lerp_angle(
-			mesh.rotation.y,
-			atan2(-direction.x, -direction.z) + PI,
-			delta * 10
-		)
-	else:
-		velocity.x = move_toward(velocity.x, 0, movement_component.get_speed())
-		velocity.z = move_toward(velocity.z, 0, movement_component.get_speed())
 	
 	state_machine.physics_update(delta)
 	
