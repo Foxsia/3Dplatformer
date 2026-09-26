@@ -135,7 +135,7 @@ gate = NodePath("../Gate")
 panda = NodePath("../Panda")
 
 [node name="Gate" parent="." unique_id=1485193020 instance=ExtResource("15_vtd0g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0071806908, 1.714081, 9.127356)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0071806908, 4.136242, 9.127356)
 
 [node name="Platform7" parent="." unique_id=401523459 instance=ExtResource("1_xxpsm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 14.826957)
