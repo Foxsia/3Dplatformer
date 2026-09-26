@@ -3,6 +3,7 @@
 #include "movement_component.h"
 #include "patrol_component.h"
 #include "ability.h"
+#include "ability_system.h"
 
 #include <gdextension_interface.h>
 #include <godot_cpp/core/class_db.hpp>
@@ -22,6 +23,7 @@ void initialize_gdextension_types(ModuleInitializationLevel p_level)
 	GDREGISTER_CLASS(HealthComponent);
 	GDREGISTER_CLASS(MovementComponent);
 	GDREGISTER_CLASS(PatrolComponent);
+	GDREGISTER_CLASS(AbilitySystem);
 	GDREGISTER_CLASS(Ability);
 }
 

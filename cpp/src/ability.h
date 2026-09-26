@@ -1,5 +1,7 @@
 #pragma once
 #include <godot_cpp/classes/node.hpp>
+#include <godot_cpp/core/gdvirtual.gen.inc>
+
 
 namespace godot
 {
@@ -16,7 +18,7 @@ namespace godot
 		virtual bool can_activate();
 		virtual void activate();
 		virtual void finish();
-		virtual void physics_update(double delta);
+		virtual void update(double delta);
 
 		bool is_active() const;
 		bool is_on_cooldown() const;
@@ -29,6 +31,9 @@ namespace godot
 
 	protected:
 		static void _bind_methods();
+
+		GDVIRTUAL0(_on_activate);
+		GDVIRTUAL1(_on_update, double);
 
 		State state = READY;
 		double cooldown_duration = 0.0;

@@ -8,7 +8,7 @@ namespace godot
         ClassDB::bind_method(D_METHOD("can_activate"), &Ability::can_activate);
         ClassDB::bind_method(D_METHOD("activate"), &Ability::activate);
         ClassDB::bind_method(D_METHOD("finish"), &Ability::finish);
-        ClassDB::bind_method(D_METHOD("physics_update", "delta"), &Ability::physics_update);
+        ClassDB::bind_method(D_METHOD("update", "delta"), &Ability::update);
 
         ClassDB::bind_method(D_METHOD("is_active"), &Ability::is_active);
         ClassDB::bind_method(D_METHOD("is_on_cooldown"), &Ability::is_on_cooldown);
@@ -25,6 +25,9 @@ namespace godot
             "set_cooldown",
             "get_cooldown"
         );
+
+        GDVIRTUAL_BIND(_on_activate);
+        GDVIRTUAL_BIND(_on_update);
 	}
 
     bool Ability::can_activate()
@@ -36,6 +39,8 @@ namespace godot
     {
         if (!can_activate()) return;
         state = ACTIVE;
+
+        GDVIRTUAL_CALL(_on_activate);
     }
 
     void Ability::finish()
@@ -52,7 +57,7 @@ namespace godot
         }
     }
 
-    void Ability::physics_update(double delta)
+    void Ability::update(double delta)
     {
         if (state == COOLDOWN)
         {
@@ -62,6 +67,11 @@ namespace godot
                 cooldown_remaining = 0.0;
                 state = READY;
             }
+        }
+
+        if (state == ACTIVE)
+        {
+            GDVIRTUAL_CALL(_on_update, delta);
         }
     }
 

@@ -11,6 +11,8 @@ var jumps_left := MAX_JUMPS
 var checkpoint_position : Vector3
 var is_dead := false
 
+@onready var ability_system = $AbilitySystem
+
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var movement_component: MovementComponent = $MovementComponent
 
@@ -51,6 +53,7 @@ func _ready():
 	
 	state_machine = PlayerStateMachine.new()
 	state_machine.initialize(idle_state)
+
 
 
 func _input(event):
