@@ -17,6 +17,7 @@ var current_target: Node3D
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready() -> void:
+	add_to_group("enemy")
 	current_target = patrol_point_1
 	
 	animation_tree.active = true
@@ -62,3 +63,6 @@ func _on_damage_area_body_entered(body: Node3D) -> void:
 		body.velocity.y = 7.0
 	else:
 		body.die()
+
+func take_damage(amount: float):
+	queue_free()

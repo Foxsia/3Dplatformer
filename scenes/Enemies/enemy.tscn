@@ -32,6 +32,7 @@ states/walk/position = Vector2(471, 107)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_8swre"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_0th86"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_uqk7a")]
 
 [node name="Enemy" type="CharacterBody3D" unique_id=1506305100]
+collision_layer = 2
 script = ExtResource("1_iq8kd")
 
 [node name="PatrolComponent" type="PatrolComponent" parent="." unique_id=1730411279]
@@ -50,29 +51,29 @@ shape = SubResource("BoxShape3D_5glgx")
 [node name="animal-bee2" parent="." unique_id=1440341426 instance=ExtResource("1_5alqo")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
 
-[node name="root" parent="animal-bee2/animal-bee" parent_id_path=PackedInt32Array(1440341426, 42731910) index="0" unique_id=401735827]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.064376265, 0)
+[node name="root" parent="animal-bee2/animal-bee" parent_id_path=PackedInt32Array(1440341426, 878285530) index="0" unique_id=1756497536]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.034586504, 0)
 
-[node name="body" parent="animal-bee2/animal-bee/root" index="0" unique_id=513205997]
-transform = Transform3D(0.99942183, 0.022450155, 0.025533564, -0.022463037, 0.99974763, 0.00021764696, -0.025522236, -0.00079108245, 0.9996739, 1.573182e-08, 0.18124998, -3.8083506e-08)
+[node name="body" parent="animal-bee2/animal-bee/root" index="0" unique_id=989899626]
+transform = Transform3D(0.99691737, 0.05543537, 0.0555211, -0.055521104, 0.99845743, 1.6085104e-06, -0.055435374, -0.0030841962, 0.99845743, 1.573182e-08, 0.18124998, -3.8083503e-08)
 
-[node name="wing-left" parent="animal-bee2/animal-bee/root/body" index="0" unique_id=1232998313]
-transform = Transform3D(0.99186194, 0.12731743, 0, -0.12731743, 0.99186194, 0, 0, 0, 1, 0.19649982, 1.3192949, -0.022000015)
+[node name="wing-left" parent="animal-bee2/animal-bee/root/body" index="0" unique_id=888946944]
+transform = Transform3D(0.9616751, 0.274191, 0, -0.274191, 0.9616751, 0, 0, 0, 1, 0.19649982, 1.3192949, -0.022000015)
 
-[node name="wing-right" parent="animal-bee2/animal-bee/root/body" index="1" unique_id=1226126627]
-transform = Transform3D(0.99186194, -0.12731743, 0, 0.12731743, 0.99186194, 0, 0, 0, 1, -0.19649982, 1.3192949, -0.022000015)
+[node name="wing-right" parent="animal-bee2/animal-bee/root/body" index="1" unique_id=2144108266]
+transform = Transform3D(0.9616751, -0.274191, 0, 0.274191, 0.9616751, 0, 0, 0, 1, -0.19649982, 1.3192949, -0.022000015)
 
-[node name="leg-back-left" parent="animal-bee2/animal-bee/root" index="1" unique_id=2879218]
-transform = Transform3D(1, 0, 0, 0, 0.9367714, 0.34994194, 0, -0.34994194, 0.9367714, 0.25, 0.3, -0.25)
+[node name="leg-back-left" parent="animal-bee2/animal-bee/root" index="1" unique_id=1764087595]
+transform = Transform3D(1, 0, 0, 0, 0.76845634, 0.6399022, 0, -0.6399022, 0.76845634, 0.25, 0.3, -0.25)
 
-[node name="leg-back-right" parent="animal-bee2/animal-bee/root" index="2" unique_id=775699729]
-transform = Transform3D(1, 0, 0, 0, 0.9367714, -0.34994194, 0, 0.34994194, 0.9367714, -0.25, 0.3, -0.25)
+[node name="leg-back-right" parent="animal-bee2/animal-bee/root" index="2" unique_id=234367068]
+transform = Transform3D(1, 0, 0, 0, 0.76845634, -0.6399022, 0, 0.6399022, 0.76845634, -0.25, 0.3, -0.25)
 
-[node name="leg-front-left" parent="animal-bee2/animal-bee/root" index="3" unique_id=1332841963]
-transform = Transform3D(1, 0, 0, 0, 0.9367714, -0.34994194, 0, 0.34994194, 0.9367714, 0.25, 0.3, 0.25)
+[node name="leg-front-left" parent="animal-bee2/animal-bee/root" index="3" unique_id=1205895253]
+transform = Transform3D(1, 0, 0, 0, 0.76845634, -0.6399022, 0, 0.6399022, 0.76845634, 0.25, 0.3, 0.25)
 
-[node name="leg-front-right" parent="animal-bee2/animal-bee/root" index="4" unique_id=249024565]
-transform = Transform3D(1, 0, 0, 0, 0.9367714, 0.34994194, 0, -0.34994194, 0.9367714, -0.25, 0.3, 0.25)
+[node name="leg-front-right" parent="animal-bee2/animal-bee/root" index="4" unique_id=294876569]
+transform = Transform3D(1, 0, 0, 0, 0.76845634, 0.6399022, 0, -0.6399022, 0.76845634, -0.25, 0.3, 0.25)
 
 [node name="AnimationTree" type="AnimationTree" parent="animal-bee2" unique_id=1137222207]
 tree_root = SubResource("AnimationNodeStateMachine_5glgx")
