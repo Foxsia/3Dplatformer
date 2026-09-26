@@ -13,6 +13,7 @@ var is_dead := false
 
 @onready var ability_system = $AbilitySystem
 @onready var dash_ability = $DashAbility
+@onready var ground_slam_ability = $GroundSlamAbility
 
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var movement_component: MovementComponent = $MovementComponent
@@ -42,6 +43,7 @@ func _ready():
 	add_to_group("player")
 	
 	ability_system.register_ability(dash_ability)
+	ability_system.register_ability(ground_slam_ability)
 	
 	animation_tree.active = true
 	animation_playback = animation_tree.get("parameters/playback")
@@ -87,7 +89,7 @@ func _physics_process(delta):
 	right = right.normalized()
 
 	var direction = (right * input_dir.x - forward * input_dir.y).normalized()
-	if not dash_ability.is_active():
+	if not ability_system.is_movement_locked():
 		if direction != Vector3.ZERO:
 			var movement_velocity = movement_component.calculate_velocity(direction, is_running)
 			velocity.x = movement_velocity.x
@@ -115,6 +117,9 @@ func _physics_process(delta):
 			dash_direction = dash_direction.normalized()
 		dash_ability.set_direction(dash_direction)
 		ability_system.request_activation(dash_ability)
+	
+	if Input.is_action_just_pressed("ground_slam"):
+		ability_system.request_activation(ground_slam_ability)
 
 	
 	state_machine.physics_update(delta)

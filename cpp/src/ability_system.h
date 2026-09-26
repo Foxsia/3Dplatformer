@@ -24,5 +24,8 @@ namespace godot
 
 	private:
 		Vector<Ability*> abilities;
+
+		bool has_conflict(Ability* ability) const;
+		bool is_movement_locked() const;
 	};
 }

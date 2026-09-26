@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dqresirb884u7"]
 
 [ext_resource type="Script" uid="uid://dq6q3ptdo25u3" path="res://scripts/Player/player.gd" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://caas0gretbesk" path="res://scripts/Abilities/ground_slam_ability.gd" id="2_c4h5g"]
 [ext_resource type="Script" uid="uid://bh3v2y8c0bi54" path="res://scripts/Abilities/dash.gd" id="2_gqjuk"]
 [ext_resource type="PackedScene" uid="uid://djdip6f085w0o" path="res://scenes/Player/fox.tscn" id="2_onrkg"]
 
@@ -12,8 +13,14 @@ script = ExtResource("1_4flbx")
 
 [node name="AbilitySystem" type="AbilitySystem" parent="." unique_id=930299349]
 
+[node name="GroundSlamAbility" type="Ability" parent="." unique_id=1730258808]
+cooldown = 4.0
+conflict_group = "movement"
+script = ExtResource("2_c4h5g")
+
 [node name="DashAbility" type="Ability" parent="." unique_id=1544397478]
 cooldown = 3.0
+conflict_group = "movement"
 script = ExtResource("2_gqjuk")
 
 [node name="HealthComponent" type="HealthComponent" parent="." unique_id=1125667405]

@@ -13,7 +13,6 @@ func set_direction(new_direction: Vector3):
 func _on_activate():
 	remaining = duration
 
-
 func _on_update(delta):
 	remaining -= delta
 	player.velocity.x = direction.x * speed

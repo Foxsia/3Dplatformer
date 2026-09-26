@@ -15,10 +15,14 @@ namespace godot
 
         ClassDB::bind_method(D_METHOD("set_cooldown", "duration"), &Ability::set_cooldown);
         ClassDB::bind_method(D_METHOD("get_cooldown"), &Ability::get_cooldown);
+
         ClassDB::bind_method(
             D_METHOD("get_cooldown_remaining"),
             &Ability::get_cooldown_remaining
         );
+
+        ClassDB::bind_method(D_METHOD("set_conflict_group", "group"), &Ability::set_conflict_group);
+        ClassDB::bind_method(D_METHOD("get_conflict_group"), &Ability::get_conflict_group);
 
         ADD_PROPERTY(
             PropertyInfo(Variant::FLOAT, "cooldown"),
@@ -26,13 +30,26 @@ namespace godot
             "get_cooldown"
         );
 
+        ADD_PROPERTY(
+            PropertyInfo(Variant::STRING, "conflict_group"),
+            "set_conflict_group",
+            "get_conflict_group"
+        );
+
+        GDVIRTUAL_BIND(_can_activate);
         GDVIRTUAL_BIND(_on_activate);
         GDVIRTUAL_BIND(_on_update);
 	}
 
     bool Ability::can_activate()
     {
-        return state == READY;
+        if (state != READY) return false;
+
+        bool result = true;
+
+        if (GDVIRTUAL_CALL(_can_activate, result)) return result;
+
+        return true;
     }
 
     void Ability::activate()
@@ -103,6 +120,16 @@ namespace godot
     double Ability::get_cooldown_remaining() const
     {
         return cooldown_remaining;
+    }
+
+    void Ability::set_conflict_group(const String& group)
+    {
+        conflict_group = group;
+    }
+
+    String Ability::get_conflict_group() const
+    {
+        return conflict_group;
     }
 
 }

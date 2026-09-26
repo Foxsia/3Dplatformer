@@ -29,14 +29,20 @@ namespace godot
 
 		double get_cooldown_remaining() const;
 
+		void set_conflict_group(const String& group);
+		String get_conflict_group() const;
+
 	protected:
 		static void _bind_methods();
 
+		GDVIRTUAL0RC(bool, _can_activate);
 		GDVIRTUAL0(_on_activate);
 		GDVIRTUAL1(_on_update, double);
 
 		State state = READY;
 		double cooldown_duration = 0.0;
 		double cooldown_remaining = 0.0;
+
+		String conflict_group;
 	};
 }
