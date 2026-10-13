@@ -20,8 +20,8 @@ var is_dead := false
 
 @onready var pivot = $CameraOrigin
 @onready var pitch = $CameraOrigin/CameraPitch
-@onready var mesh = get_node("animal-fox2/animal-fox")
-@onready var animation_tree = get_node("animal-fox2/AnimationTree")
+@onready var mesh = $Knight
+@onready var animation_tree = $Knight/AnimationTree
 
 @onready var raycast: RayCast3D = $RayCast3D
 
