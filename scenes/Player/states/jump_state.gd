@@ -4,7 +4,7 @@ extends PlayerState
 func enter() -> void:
 	player.velocity.y = player.JUMP_VELOCITY
 	player.jumps_left -= 1
-	player.play_animation("gesture-positive")
+	player.play_animation("jump")
 
 func physics_update(_delta: float) -> void:
 	if Input.is_action_just_pressed("jump") and player.jumps_left > 0:
