@@ -25,6 +25,10 @@ PauseMenu="*uid://derceplw6lb2n"
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[filesystem]
+
+import/blender/enabled=false
+
 [global_group]
 
 level=""
