@@ -1,6 +1,7 @@
 #pragma once
 
 #include <godot_cpp/classes/node.hpp>
+#include <godot_cpp/variant/array.hpp>
 
 namespace godot
 {
@@ -22,6 +23,7 @@ namespace godot
 		bool can_activate(Ability* ability) const;
 		void update(double delta);
 
+		Array get_abilities() const;
 	private:
 		Vector<Ability*> abilities;
 

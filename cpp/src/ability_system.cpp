@@ -34,6 +34,11 @@ namespace godot
             D_METHOD("is_movement_locked"),
             &AbilitySystem::is_movement_locked
         );
+
+        ClassDB::bind_method(
+            D_METHOD("get_abilities"),
+            &AbilitySystem::get_abilities
+        );
     }
 
     void AbilitySystem::_ready()
@@ -78,6 +83,21 @@ namespace godot
             ability->update(delta);
         }
     }
+
+    Array AbilitySystem::get_abilities() const
+    {
+        Array result;
+
+        for(Ability* ability : abilities)
+        {
+            if (ability)
+            {
+                result.append(ability);
+            }
+        }
+        return result;
+    }
+
     bool AbilitySystem::has_conflict(Ability* ability) const
     {
         if (!ability) return false;

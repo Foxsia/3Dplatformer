@@ -16,13 +16,11 @@ namespace godot
         ClassDB::bind_method(D_METHOD("set_cooldown", "duration"), &Ability::set_cooldown);
         ClassDB::bind_method(D_METHOD("get_cooldown"), &Ability::get_cooldown);
 
-        ClassDB::bind_method(
-            D_METHOD("get_cooldown_remaining"),
-            &Ability::get_cooldown_remaining
-        );
+        ClassDB::bind_method(D_METHOD("get_cooldown_remaining"), &Ability::get_cooldown_remaining);
 
         ClassDB::bind_method(D_METHOD("set_conflict_group", "group"), &Ability::set_conflict_group);
         ClassDB::bind_method(D_METHOD("get_conflict_group"), &Ability::get_conflict_group);
+        ClassDB::bind_method(D_METHOD("get_state_name"), &Ability::get_state_name);
 
         ADD_PROPERTY(
             PropertyInfo(Variant::FLOAT, "cooldown"),
@@ -130,6 +128,24 @@ namespace godot
     String Ability::get_conflict_group() const
     {
         return conflict_group;
+    }
+
+    String Ability::get_state_name() const
+    {
+        switch (state)
+        {
+        case READY:
+            return "READY";
+
+        case ACTIVE:
+            return "ACTIVE";
+
+        case COOLDOWN:
+            return "COOLDOWN";
+
+        default:
+            return "UNKNOWN";
+        }
     }
 
 }

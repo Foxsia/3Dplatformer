@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bnva4o5l73gtr"]
+
+[ext_resource type="Script" uid="uid://cys78whe3r8ee" path="res://scripts/Debug/ability_debug.gd" id="1_c455m"]
+
+[node name="AbilityDebug" type="CanvasLayer" unique_id=339863218]
+script = ExtResource("1_c455m")
+
+[node name="AbilityDebugPanel" type="PanelContainer" parent="." unique_id=1222896118]
+offset_right = 1151.0
+offset_bottom = 647.0
+
+[node name="MarginContainer" type="MarginContainer" parent="AbilityDebugPanel" unique_id=394837134]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="AbilityDebugPanel/MarginContainer" unique_id=496440379]
+layout_mode = 2

@@ -32,6 +32,8 @@ namespace godot
 		void set_conflict_group(const String& group);
 		String get_conflict_group() const;
 
+		String get_state_name() const;
+
 	protected:
 		static void _bind_methods();
 

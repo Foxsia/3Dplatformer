@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://dy5kx1x7sa4py" path="res://scripts/HUD/hud.gd" id="9_5gowt"]
 [ext_resource type="PackedScene" uid="uid://bm11rxr3ltjnq" path="res://scenes/Enemies/enemy.tscn" id="10_4p1o3"]
 [ext_resource type="PackedScene" uid="uid://bdcavryxcw354" path="res://scenes/wall.tscn" id="10_j85eu"]
+[ext_resource type="PackedScene" uid="uid://bnva4o5l73gtr" path="res://scenes/Debug/ability_debug.tscn" id="12_7u17y"]
 [ext_resource type="PackedScene" uid="uid://b6d4dt5eq06qa" path="res://scenes/Interactable/puzzle_button.tscn" id="12_ngn3o"]
 [ext_resource type="PackedScene" uid="uid://cujfbqmacn182" path="res://scenes/NPCs/panda.tscn" id="13_iiv34"]
 [ext_resource type="Script" uid="uid://u3rvrfmp4gv7" path="res://scripts/puzzle_manager.gd" id="14_iiv34"]
@@ -116,6 +117,8 @@ offset_left = 2.0
 offset_top = 25.0
 offset_right = 42.0
 offset_bottom = 48.0
+
+[node name="AbilityDebug" parent="." unique_id=339863218 instance=ExtResource("12_7u17y")]
 
 [node name="PuzzleButton" parent="." unique_id=1262452332 node_paths=PackedStringArray("puzzle_manager") instance=ExtResource("12_ngn3o")]
 transform = Transform3D(-0.047972184, 0, -0.9988487, 0, 1, 0, 0.9988487, 0, -0.047972184, 30.634682, 0.25, 0.077804565)
