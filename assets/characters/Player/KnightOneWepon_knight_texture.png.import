@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bra4cxtpivikr"
-path.s3tc="res://.godot/imported/Knight_knight_texture.png-ff64606b47d46184d763c8886a619448.s3tc.ctex"
+uid="uid://fohcec3i7035"
+path.s3tc="res://.godot/imported/KnightOneWepon_knight_texture.png-8801b7f10206bc2798cdfa902b095232.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://assets/characters/Player/Textures/Knight_knight_texture.png"
-dest_files=["res://.godot/imported/Knight_knight_texture.png-ff64606b47d46184d763c8886a619448.s3tc.ctex"]
+source_file="res://assets/characters/Player/KnightOneWepon_knight_texture.png"
+dest_files=["res://.godot/imported/KnightOneWepon_knight_texture.png-8801b7f10206bc2798cdfa902b095232.s3tc.ctex"]
 
 [params]
 

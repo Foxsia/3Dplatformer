@@ -11,6 +11,7 @@ func physics_update(_delta: float) -> void:
 	
 	if Input.is_action_just_pressed("jump"):
 		player.state_machine.change_state(player.jump_state)
+		return
 	
 	if not player.is_moving():
 		player.state_machine.change_state(player.idle_state)
