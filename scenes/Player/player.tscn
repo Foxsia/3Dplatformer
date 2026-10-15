@@ -3,10 +3,14 @@
 [ext_resource type="Script" uid="uid://dq6q3ptdo25u3" path="res://scripts/Player/player.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://caas0gretbesk" path="res://scripts/Abilities/ground_slam_ability.gd" id="2_c4h5g"]
 [ext_resource type="Script" uid="uid://bh3v2y8c0bi54" path="res://scripts/Abilities/dash.gd" id="2_gqjuk"]
+[ext_resource type="Script" uid="uid://co3s3u04tydrf" path="res://scripts/Abilities/sword_attack_ability.gd" id="2_uiqp4"]
 [ext_resource type="PackedScene" uid="uid://d3ib26oij1k5w" path="res://assets/characters/Player/KnightOneWepon.glb" id="5_uiqp4"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_8x0u3"]
 radius = 0.2805278
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5glgx"]
+size = Vector3(0.3461914, 1.1991882, 0.10107422)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uiqp4"]
 animation = &"1H_Melee_Attack_Chop"
@@ -120,6 +124,13 @@ script = ExtResource("1_4flbx")
 
 [node name="AbilitySystem" type="AbilitySystem" parent="." unique_id=930299349]
 
+[node name="SwordAttackAbility" type="Ability" parent="." unique_id=1350938727]
+cooldown = 0.9
+conflict_group = "attack"
+script = ExtResource("2_uiqp4")
+animation_tree_path = NodePath("../Knight/AnimationTree")
+hitbox_path = NodePath("../Knight/Rig/Skeleton3D/handslot_r/1H_Sword/Hitbox")
+
 [node name="GroundSlamAbility" type="Ability" parent="." unique_id=1730258808]
 cooldown = 4.0
 conflict_group = "movement"
@@ -159,6 +170,13 @@ collide_with_areas = true
 
 [node name="Knight" parent="." unique_id=771984540 instance=ExtResource("5_uiqp4")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.0573799, 0)
+
+[node name="Hitbox" type="Area3D" parent="Knight/Rig/Skeleton3D/handslot_r/1H_Sword" parent_id_path=PackedInt32Array(771984540, 1681981586) index="0" unique_id=350406089]
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Knight/Rig/Skeleton3D/handslot_r/1H_Sword/Hitbox" unique_id=1833132966]
+transform = Transform3D(1, 0, -4.5992294e-12, 0, 1, 4.5972115e-12, -8.822475e-16, 4.5972115e-12, 1, 0.0017092228, 0.8083853, 0.013859153)
+shape = SubResource("BoxShape3D_5glgx")
 
 [node name="AnimationTree" type="AnimationTree" parent="Knight" unique_id=2108342985]
 callback_mode_method = 1

@@ -32,8 +32,8 @@ text = "[E] Talk"
 [node name="animal-panda2" parent="." unique_id=938776085 instance=ExtResource("1_d8nx8")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
 
-[node name="body" parent="animal-panda2/animal-panda/root" parent_id_path=PackedInt32Array(938776085, 1423005234) index="0" unique_id=1097234772]
-transform = Transform3D(0.9824088, 0.17322515, 0.069756456, -0.17364816, 0.98480767, -4.656613e-10, -0.0686967, -0.012113079, 0.9975641, 1.573182e-08, 0.18124998, -3.8083503e-08)
+[node name="body" parent="animal-panda2/animal-panda/root" parent_id_path=PackedInt32Array(938776085, 751624082) index="0" unique_id=1685301977]
+transform = Transform3D(0.9998037, 0.017719634, 0.008860556, -0.017720403, 0.9998429, 7.910683e-06, -0.008859024, -0.00016492174, 0.9999607, 1.573182e-08, 0.18124998, -3.8083503e-08)
 
 [node name="AnimationTree" type="AnimationTree" parent="animal-panda2" unique_id=107720520]
 tree_root = SubResource("AnimationNodeAnimation_urqp6")

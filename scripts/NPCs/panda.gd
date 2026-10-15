@@ -58,3 +58,6 @@ func talk() -> void:
 
 func _on_dialogue_finished() -> void:
 	dialogue_finished = true
+
+func take_damage(amount) -> void:
+	queue_free()

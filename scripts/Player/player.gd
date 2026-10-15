@@ -14,6 +14,7 @@ var is_dead := false
 @onready var ability_system = $AbilitySystem
 @onready var dash_ability = $DashAbility
 @onready var ground_slam_ability = $GroundSlamAbility
+@onready var sword_attack_ability = $SwordAttackAbility
 
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var movement_component: MovementComponent = $MovementComponent
@@ -44,6 +45,7 @@ func _ready():
 	
 	ability_system.register_ability(dash_ability)
 	ability_system.register_ability(ground_slam_ability)
+	ability_system.register_ability(sword_attack_ability)
 	
 	animation_tree.active = true
 	animation_playback = animation_tree.get("parameters/playback")
@@ -73,6 +75,9 @@ func _physics_process(delta):
 	
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
+	
+	if Input.is_action_just_pressed("attack"):
+		ability_system.request_activation(sword_attack_ability)
 	
 	if Input.is_action_pressed("sprint"):
 		is_running = true
