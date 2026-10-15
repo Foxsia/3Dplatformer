@@ -110,7 +110,7 @@ func _physics_process(delta):
 			velocity.z = move_toward(velocity.z, 0, movement_component.get_speed())
 	
 	if Input.is_action_just_pressed("dash"):
-		var dash_direction = -global_transform.basis.z
+		var dash_direction = -pivot.global_transform.basis.z
 		dash_direction.y = 0.0
 		dash_direction = dash_direction.normalized()
 		dash_ability.set_direction(dash_direction)
