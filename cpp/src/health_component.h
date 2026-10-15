@@ -11,6 +11,15 @@ namespace godot
 		static void _bind_methods();
 
 	public:
+		void take_damage(double amount);
+		void heal(double amount);
+
+		double get_health() const;
+		double get_max_health() const;
+		void set_max_health(double value);
+
+		bool is_dead() const;
+
 		void lose_life();
 		int get_lives() const;
 
@@ -19,6 +28,10 @@ namespace godot
 		virtual void _ready() override;
 
 	private:
+		double max_health = 100.0;
+		double health = 100.0;
+		bool dead = false;
+
 		int max_lives = 3;
 		int lives = 3;
 	};
