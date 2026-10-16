@@ -125,7 +125,7 @@ script = ExtResource("1_4flbx")
 [node name="AbilitySystem" type="AbilitySystem" parent="." unique_id=930299349]
 
 [node name="SwordAttackAbility" type="Ability" parent="." unique_id=1350938727]
-cooldown = 0.9
+cooldown = 0.5
 conflict_group = "attack"
 script = ExtResource("2_uiqp4")
 animation_tree_path = NodePath("../Knight/AnimationTree")

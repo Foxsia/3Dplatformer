@@ -35,7 +35,7 @@ func _on_activate() -> void:
 	
 	if animation_tree:
 		var playback = animation_tree.get("parameters/playback")
-		playback.travel("attack")
+		playback.start("attack")
 
 func _on_update(delta: float) -> void:
 	elapsed += delta
