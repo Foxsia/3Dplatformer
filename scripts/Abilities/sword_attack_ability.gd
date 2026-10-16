@@ -65,6 +65,7 @@ func check_hits() -> void:
 		if body in hit_targets:
 			continue
 		
-		if body.has_method("take_damage"):
+		if body.is_in_group("enemy") and body.has_method("take_damage"):
 			hit_targets.append(body)
 			body.take_damage(damage)
+			

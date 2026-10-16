@@ -25,6 +25,8 @@ namespace godot
 
 		void set_max_lives(int value);
 		int get_max_lives() const;
+
+		void reset_health();
 		virtual void _ready() override;
 
 	private:

@@ -10,7 +10,12 @@ extends CharacterBody3D
 @onready var damage_area: Area3D = $DamageArea
 
 @onready var animation_tree: AnimationTree = $"animal-bee2/AnimationTree"
+@onready var health_component: HealthComponent = $HealthComponent
 
+@export var contact_damage: float = 20.0
+@export var damage_cooldown: float = 1.0
+
+var can_damage_player := true
 var animation_playback
 
 var current_target: Node3D
@@ -23,6 +28,7 @@ func _ready() -> void:
 	animation_tree.active = true
 	animation_playback = animation_tree.get("parameters/playback")
 	damage_area.body_entered.connect(_on_damage_area_body_entered)
+	health_component.died.connect(_on_died)
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -59,10 +65,19 @@ func _on_damage_area_body_entered(body: Node3D) -> void:
 		return
 	
 	if body.velocity.y < 0 and body.global_position.y > global_position.y + 0.3:
-		queue_free()
+		health_component.take_damage(health_component.get_health())
 		body.velocity.y = 7.0
-	else:
-		body.die()
+		return
+	
+	if can_damage_player:
+		if body.has_method("take_damage"):
+			body.take_damage(contact_damage)
+			can_damage_player = false
+			await get_tree().create_timer(damage_cooldown).timeout
+			can_damage_player = true
 
 func take_damage(amount: float):
+	health_component.take_damage(amount);
+
+func _on_died() -> void:
 	queue_free()

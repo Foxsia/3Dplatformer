@@ -67,6 +67,11 @@ namespace godot
 			&HealthComponent::get_max_lives
 		);
 
+		ClassDB::bind_method(
+			D_METHOD("reset_health"),
+			&HealthComponent::reset_health
+		);
+
 		ADD_PROPERTY(
 			PropertyInfo(Variant::FLOAT, "max_health"),
 			"set_max_health",
@@ -133,6 +138,15 @@ namespace godot
 	bool HealthComponent::is_dead() const
 	{
 		return dead;
+	}
+
+	void HealthComponent::reset_health()
+	{
+		health = max_health;
+
+		dead = false;
+
+		emit_signal("health_changed", health, max_health);
 	}
 
 	void HealthComponent::_ready()

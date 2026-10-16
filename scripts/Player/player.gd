@@ -156,6 +156,9 @@ func respawn():
 	global_position = checkpoint_position
 	velocity = Vector3.ZERO
 	jumps_left = MAX_JUMPS
+	
+	health_component.reset_health()
+	
 	is_dead = false
 
 func game_over():
@@ -170,3 +173,12 @@ func  play_animation(animation_name: String) -> void:
 func is_moving() -> bool:
 	var input_dir = Input.get_vector("left", "right", "down", "up")
 	return input_dir.length() > 0.0
+
+func take_damage(amount: float) -> void:
+	if is_dead:
+		return
+	
+	health_component.take_damage(amount)
+	
+	if health_component.is_dead():
+		die()
