@@ -3,7 +3,7 @@ class_name EnemyBase
 
 @export_group("Movement")
 @export var move_speed := 2.5
-@export var detection_range : = 15.0
+@export var detection_range := 15.0
 
 @export_group("References")
 @export var visual_root: Node3D
@@ -54,10 +54,12 @@ func find_player() -> Node3D:
 	return player
 
 func move_towards_position(destination: Vector3) -> void:
-	if navigation_agent == null:
+	if not is_instance_valid(navigation_agent):
+		stop_movement()
 		return
 	
-	navigation_agent.target_position = destination
+	if navigation_agent.target_position.distance_to(destination) > 0.5:
+		navigation_agent.target_position = destination
 	
 	if navigation_agent.is_navigation_finished():
 		stop_movement()
@@ -67,17 +69,19 @@ func move_towards_position(destination: Vector3) -> void:
 	var direction: Vector3 = next_position - global_position
 	direction.y = 0.0
 	
-	if direction.length_squared() > 0.001:
-		direction = direction.normalized()
-		velocity.x = direction.x * move_speed
-		velocity.z = direction.z * move_speed
-		play_animation("walk")
-	else:
+	if direction.length_squared() < 0.04:
 		stop_movement()
+		return
+	
+	direction = direction.normalized()
+	velocity.x = direction.x * move_speed
+	velocity.z = direction.z * move_speed
+	
+	play_animation("walk")
 
 func stop_movement() -> void:
-	velocity.x = move_toward(velocity.x, 0.0, move_speed)
-	velocity.y = move_toward(velocity.y, 0.0, move_speed)
+	velocity.x = 0.0
+	velocity.z = 0.0
 	play_animation("idle")
 
 func play_animation(animation_name: String) -> void:
@@ -102,6 +106,7 @@ func face_target(node: Node3D):
 			visual_root.global_position + direction,
 			Vector3.UP
 		)
+		visual_root.rotate_y(PI)
 
 func _on_died() -> void:
 	if is_dead:

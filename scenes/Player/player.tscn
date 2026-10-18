@@ -6,8 +6,9 @@
 [ext_resource type="Script" uid="uid://co3s3u04tydrf" path="res://scripts/Abilities/sword_attack_ability.gd" id="2_uiqp4"]
 [ext_resource type="PackedScene" uid="uid://d3ib26oij1k5w" path="res://assets/characters/Player/KnightOneWepon.glb" id="5_uiqp4"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_8x0u3"]
-radius = 0.2805278
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8kowh"]
+radius = 0.24316406
+height = 1.2282715
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5glgx"]
 size = Vector3(0.3461914, 1.1991882, 0.10107422)
@@ -146,8 +147,8 @@ script = ExtResource("2_gqjuk")
 [node name="MovementComponent" type="MovementComponent" parent="." unique_id=1460940913]
 
 [node name="BodyCol" type="CollisionShape3D" parent="." unique_id=1940123732]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3368401, 0)
-shape = SubResource("SphereShape3D_8x0u3")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6321282, 0)
+shape = SubResource("CapsuleShape3D_8kowh")
 
 [node name="CameraOrigin" type="Node3D" parent="." unique_id=691537197]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.50695765, 0)
