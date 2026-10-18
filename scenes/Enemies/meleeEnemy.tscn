@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://cv2bvxu0p0pak"]
+
+[ext_resource type="Script" uid="uid://m7xvq6v1oi4m" path="res://scripts/Enemies/enemy.gd" id="1_8kowh"]
+[ext_resource type="PackedScene" uid="uid://bqh2l21n85vuo" path="res://assets/characters/Enemies/Rogue.glb" id="2_8kowh"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5glgx"]
+radius = 0.31800464
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5glgx"]
+size = Vector3(0.32913208, 1, 0.4642334)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_urqp6"]
+size = Vector3(0.21853638, 0.7495117, 0.06762695)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_iq8kd"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_48hpc"]
+animation = &"Walking_A"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8swre"]
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0th86"]
+xfade_time = 0.2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uqk7a"]
+xfade_time = 0.2
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_5glgx"]
+states/idle/node = SubResource("AnimationNodeAnimation_iq8kd")
+states/idle/position = Vector2(321, 107)
+states/walk/node = SubResource("AnimationNodeAnimation_48hpc")
+states/walk/position = Vector2(471, 107)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_8swre"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_0th86"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_uqk7a")]
+
+[node name="MeleeEnemy" type="CharacterBody3D" unique_id=1506305100]
+collision_layer = 2
+script = ExtResource("1_8kowh")
+
+[node name="PatrolComponent" type="PatrolComponent" parent="." unique_id=1730411279]
+
+[node name="HealthComponent" type="HealthComponent" parent="." unique_id=1798651734]
+max_health = 40.0
+max_lives = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=686229698]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.27304924, 0)
+shape = SubResource("SphereShape3D_5glgx")
+
+[node name="DamageArea" type="Area3D" parent="." unique_id=105108616]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.016775966, 0.5562719, 0)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea" unique_id=525547635]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.024362057, 0, -0.019836426)
+shape = SubResource("BoxShape3D_5glgx")
+
+[node name="Rogue" parent="." unique_id=2137856925 instance=ExtResource("2_8kowh")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="hitbox" type="Area3D" parent="Rogue/Rig/Skeleton3D/handslot_r/Knife" parent_id_path=PackedInt32Array(2137856925, 717499426) index="0" unique_id=1794292665]
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rogue/Rig/Skeleton3D/handslot_r/Knife/hitbox" unique_id=676620416]
+transform = Transform3D(1.0000035, -2.9802322e-07, -2.2740906e-11, 3.1292439e-07, 1.0000014, -4.8956394e-12, 3.0080497e-11, 2.7000624e-13, 1, 0.02752453, 0.62154806, -0.0056028366)
+shape = SubResource("BoxShape3D_urqp6")
+
+[node name="AnimationTree" type="AnimationTree" parent="Rogue" unique_id=1545450869]
+tree_root = SubResource("AnimationNodeStateMachine_5glgx")
+anim_player = NodePath("../AnimationPlayer")
+
+[editable path="Rogue"]
