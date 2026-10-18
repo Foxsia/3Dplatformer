@@ -3,11 +3,9 @@
 [ext_resource type="Script" uid="uid://m7xvq6v1oi4m" path="res://scripts/Enemies/enemy.gd" id="1_8kowh"]
 [ext_resource type="PackedScene" uid="uid://bqh2l21n85vuo" path="res://assets/characters/Enemies/Rogue.glb" id="2_8kowh"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_5glgx"]
-radius = 0.31800464
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_5glgx"]
-size = Vector3(0.32913208, 1, 0.4642334)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8kowh"]
+radius = 0.21044922
+height = 1.1237793
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_urqp6"]
 size = Vector3(0.21853638, 0.7495117, 0.06762695)
@@ -40,23 +38,19 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 collision_layer = 2
 script = ExtResource("1_8kowh")
 
-[node name="PatrolComponent" type="PatrolComponent" parent="." unique_id=1730411279]
-
 [node name="HealthComponent" type="HealthComponent" parent="." unique_id=1798651734]
 max_health = 40.0
 max_lives = 1
 
+[node name="AbilitySystem" type="AbilitySystem" parent="." unique_id=1422773766]
+
+[node name="MeleeAttackAbility" type="Ability" parent="." unique_id=2095171734]
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=686229698]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.27304924, 0)
-shape = SubResource("SphereShape3D_5glgx")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.52414787, 0)
+shape = SubResource("CapsuleShape3D_8kowh")
 
-[node name="DamageArea" type="Area3D" parent="." unique_id=105108616]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.016775966, 0.5562719, 0)
-metadata/_edit_group_ = true
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea" unique_id=525547635]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.024362057, 0, -0.019836426)
-shape = SubResource("BoxShape3D_5glgx")
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=473921085]
 
 [node name="Rogue" parent="." unique_id=2137856925 instance=ExtResource("2_8kowh")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
