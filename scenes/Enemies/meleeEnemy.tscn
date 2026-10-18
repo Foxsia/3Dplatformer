@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cv2bvxu0p0pak"]
 
-[ext_resource type="Script" uid="uid://m7xvq6v1oi4m" path="res://scripts/Enemies/enemy.gd" id="1_8kowh"]
+[ext_resource type="Script" uid="uid://0s44uo670jyo" path="res://scripts/Enemies/melee_enemy.gd" id="1_8kowh"]
 [ext_resource type="PackedScene" uid="uid://bqh2l21n85vuo" path="res://assets/characters/Enemies/Rogue.glb" id="2_8kowh"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8kowh"]
