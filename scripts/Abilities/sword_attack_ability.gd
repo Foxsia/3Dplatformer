@@ -23,11 +23,19 @@ func _ready() -> void:
 	
 	if hitbox:
 		hitbox.monitoring = false
+	
+	finished.connect(_on_ability_finished)
+
+func _on_ability_finished() -> void:
+	if actor is EnemyBase:
+		actor.is_attacking = false
 
 func _can_activate() -> bool:
 	return actor != null and actor.is_on_floor()
 
 func _on_activate() -> void:
+	if actor is EnemyBase:
+		actor.is_attacking = true
 	elapsed = 0.0
 	hit_targets.clear()
 	

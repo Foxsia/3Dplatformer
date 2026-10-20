@@ -37,6 +37,8 @@ namespace godot
         GDVIRTUAL_BIND(_can_activate);
         GDVIRTUAL_BIND(_on_activate);
         GDVIRTUAL_BIND(_on_update);
+
+        ADD_SIGNAL(MethodInfo("finished"));
 	}
 
     bool Ability::can_activate()
@@ -69,6 +71,7 @@ namespace godot
         else
         {
             state = READY;
+            emit_signal("finished");
         }
     }
 

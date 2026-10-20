@@ -2,7 +2,7 @@ extends EnemyBase
 class_name MeleeEnemy
 
 @export_group("Combat")
-@export var attack_range: float = 1.0
+@export var attack_range: float = 0.85
 @export var attack_cooldown := 1.2
 
 @export_group("Abilities")
@@ -22,12 +22,18 @@ func update_enemy_ai(delta: float) -> void:
 	target = find_player()
 	
 	if target == null:
-		stop_movement()
+		if not is_attacking:
+			stop_movement()
 		return
 	
 	var distance = global_position.distance_to(target.global_position)
 	
 	face_target(target)
+	
+	if is_attacking:
+		velocity.x = 0.0
+		velocity.z = 0.0
+		return
 	
 	if distance > attack_range:
 		move_towards_position(target.global_position)

@@ -3,7 +3,7 @@ class_name EnemyBase
 
 @export_group("Movement")
 @export var move_speed := 2.5
-@export var detection_range := 15.0
+@export var detection_range := 10.0
 
 @export_group("References")
 @export var visual_root: Node3D
@@ -15,6 +15,7 @@ class_name EnemyBase
 var target: Node3D = null
 var animation_playback: AnimationNodeStateMachinePlayback = null
 var is_dead: bool = false
+var is_attacking: bool = false
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -83,17 +84,20 @@ func move_towards_position(destination: Vector3) -> void:
 func stop_movement() -> void:
 	velocity.x = 0.0
 	velocity.z = 0.0
-	play_animation("idle")
+	if is_attacking:
+		return
+	if animation_playback:
+		if animation_playback.get_current_node() != "idle":
+			play_animation("idle")
 
 func play_animation(animation_name: String) -> void:
-	if self is MeleeEnemy:
-		var enemy := self as MeleeEnemy
-		if enemy.melee_ability and enemy.melee_ability.is_active():
-			return
+	if is_attacking:
+		return
+	
 	if ability and ability.is_active():
 		return
 	
-	if animation_playback:
+	if animation_playback.get_current_node() != animation_name:
 		animation_playback.travel(animation_name)
 
 func take_damage(amount: float) -> void:

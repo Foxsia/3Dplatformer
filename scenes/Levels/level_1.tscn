@@ -118,7 +118,7 @@ patrol_point_1 = NodePath("../PatrolPoint1")
 patrol_point_2 = NodePath("../PatrolPoint2")
 
 [node name="MeleeEnemy" parent="." unique_id=877067 instance=ExtResource("12_a60bd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2942314, 0.299138, 0.41884565)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.102972, 0.299138, -0.6246815)
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=510913633]
 script = ExtResource("9_5gowt")
