@@ -17,30 +17,19 @@ func _ready() -> void:
 	if melee_ability and ability_system:
 		ability_system.register_ability(melee_ability)
 
-func update_enemy_ai(delta: float) -> void:
+func get_attack_range() -> float:
+	return attack_range
+
+func start_attack() -> void:
+	if attack_timer > 0.0:
+		return
+
+	if not ability_system or not melee_ability:
+		return
+
+	if ability_system.request_activation(melee_ability):
+		attack_timer = attack_cooldown
+
+func _physics_process(delta: float) -> void:
 	attack_timer = maxf(0.0, attack_timer - delta)
-	target = find_player()
-	
-	if target == null:
-		if not is_attacking:
-			stop_movement()
-		return
-	
-	var distance = global_position.distance_to(target.global_position)
-	
-	face_target(target)
-	
-	if is_attacking:
-		velocity.x = 0.0
-		velocity.z = 0.0
-		return
-	
-	if distance > attack_range:
-		move_towards_position(target.global_position)
-		return
-	
-	stop_movement()
-	
-	if attack_timer <= 0.0 and ability_system and melee_ability:
-		if ability_system.request_activation(melee_ability):
-			attack_timer = attack_cooldown
+	super._physics_process(delta)

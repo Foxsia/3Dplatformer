@@ -20,6 +20,12 @@ var wants_to_move: bool = false
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+var state_machine: EnemyStateMachine
+
+var idle_state: EnemyIdleState
+var chase_state: EnemyChaseState
+var attack_state: EnemyAttackState
+
 func _ready() -> void:
 	add_to_group("enemy")
 	target = get_tree().get_first_node_in_group("player") as Node3D
@@ -30,6 +36,22 @@ func _ready() -> void:
 	
 	if health_component:
 		health_component.died.connect(_on_died)
+	
+	setup_state_machine()
+
+func setup_state_machine() -> void:
+	state_machine = EnemyStateMachine.new()
+	
+	idle_state = EnemyIdleState.new()
+	idle_state.enemy = self
+	
+	chase_state = EnemyChaseState.new()
+	chase_state.enemy = self
+	
+	attack_state = EnemyAttackState.new()
+	attack_state.enemy = self
+
+	state_machine.initialize(idle_state)
 
 func _physics_process(delta: float) -> void:
 	if is_dead:
@@ -40,12 +62,10 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.y = 0.0
 	
-	update_enemy_ai(delta)
+	state_machine.physics_update(delta)
+	state_machine.update(delta)
 	move_and_slide()
 	update_locomotion_animation()
-
-func update_enemy_ai(_delta: float) -> void:
-	pass
 
 func find_player() -> Node3D:
 	var player = get_tree().get_first_node_in_group("player") as Node3D
@@ -141,3 +161,9 @@ func _on_died() -> void:
 	
 	is_dead = true
 	queue_free()
+
+func get_attack_range() -> float:
+	return 0.0
+
+func start_attack() -> void:
+	pass
