@@ -16,6 +16,7 @@ var target: Node3D = null
 var animation_playback: AnimationNodeStateMachinePlayback = null
 var is_dead: bool = false
 var is_attacking: bool = false
+var wants_to_move: bool = false
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -41,6 +42,7 @@ func _physics_process(delta: float) -> void:
 	
 	update_enemy_ai(delta)
 	move_and_slide()
+	update_locomotion_animation()
 
 func update_enemy_ai(_delta: float) -> void:
 	pass
@@ -79,22 +81,35 @@ func move_towards_position(destination: Vector3) -> void:
 	velocity.x = direction.x * move_speed
 	velocity.z = direction.z * move_speed
 	
-	play_animation("walk")
+	wants_to_move = true
 
 func stop_movement() -> void:
 	velocity.x = 0.0
 	velocity.z = 0.0
-	if is_attacking:
+	wants_to_move = false
+
+func update_locomotion_animation() -> void:
+	if is_dead or is_attacking:
 		return
-	if animation_playback:
-		if animation_playback.get_current_node() != "idle":
-			play_animation("idle")
+	if ability and ability.is_active():
+		return
+	if not animation_playback:
+		return
+	var horizontal_speed := Vector2(velocity.x, velocity.z).length()
+	
+	if horizontal_speed > 0.1:
+		play_animation("walk")
+	else:
+		play_animation("idle")
 
 func play_animation(animation_name: String) -> void:
 	if is_attacking:
 		return
 	
 	if ability and ability.is_active():
+		return
+	
+	if not animation_playback:
 		return
 	
 	if animation_playback.get_current_node() != animation_name:
