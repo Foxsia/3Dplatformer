@@ -10,6 +10,7 @@ class_name EnemyBase
 @export var animation_tree: AnimationTree
 @export var navigation_agent: NavigationAgent3D
 @export var health_component: HealthComponent
+@export var ability: Ability
 
 var target: Node3D = null
 var animation_playback: AnimationNodeStateMachinePlayback = null
@@ -85,6 +86,13 @@ func stop_movement() -> void:
 	play_animation("idle")
 
 func play_animation(animation_name: String) -> void:
+	if self is MeleeEnemy:
+		var enemy := self as MeleeEnemy
+		if enemy.melee_ability and enemy.melee_ability.is_active():
+			return
+	if ability and ability.is_active():
+		return
+	
 	if animation_playback:
 		animation_playback.travel(animation_name)
 

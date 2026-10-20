@@ -11,7 +11,7 @@ radius = 1.0
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_urqp6"]
 animation = &"idle"
 
-[node name="Panda" type="StaticBody3D" unique_id=1301483303]
+[node name="Panda" type="StaticBody3D" unique_id=1301483303 groups=["npc"]]
 script = ExtResource("1_sd48c")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=764016104]
@@ -33,7 +33,7 @@ text = "[E] Talk"
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
 
 [node name="body" parent="animal-panda2/animal-panda/root" parent_id_path=PackedInt32Array(938776085, 751624082) index="0" unique_id=1685301977]
-transform = Transform3D(0.9974467, 0.06386252, 0.03196393, -0.0638952, 0.9979565, 9.3237026e-07, -0.03189856, -0.0020432717, 0.99948895, 1.573182e-08, 0.18124998, -3.8083503e-08)
+transform = Transform3D(0.99882317, 0.043376505, 0.021698527, -0.043386824, 0.99905825, 4.7007047e-06, -0.021677895, -0.0009461253, 0.99976444, 1.573182e-08, 0.18124998, -3.8083503e-08)
 
 [node name="AnimationTree" type="AnimationTree" parent="animal-panda2" unique_id=107720520]
 tree_root = SubResource("AnimationNodeAnimation_urqp6")

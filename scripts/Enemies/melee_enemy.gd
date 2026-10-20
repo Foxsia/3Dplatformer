@@ -14,7 +14,7 @@ var attack_timer: float = 0.0
 func _ready() -> void:
 	super._ready()
 	
-	if melee_ability:
+	if melee_ability and ability_system:
 		ability_system.register_ability(melee_ability)
 
 func update_enemy_ai(delta: float) -> void:

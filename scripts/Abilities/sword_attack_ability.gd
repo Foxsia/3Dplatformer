@@ -7,8 +7,9 @@ extends Ability
 
 @export var animation_tree_path: NodePath
 @export var hitbox_path: NodePath
+@export var actor_path: NodePath = NodePath("..")
 
-var player: CharacterBody3D
+var actor: CharacterBody3D
 var animation_tree: AnimationTree
 var hitbox: Area3D
 
@@ -16,7 +17,7 @@ var elapsed := 0.0
 var hit_targets: Array[Node3D] = []
 
 func _ready() -> void:
-	player = get_parent() as CharacterBody3D
+	actor = get_node_or_null(actor_path) as CharacterBody3D
 	animation_tree = get_node_or_null(animation_tree_path) as AnimationTree
 	hitbox = get_node_or_null(hitbox_path) as Area3D
 	
@@ -24,7 +25,7 @@ func _ready() -> void:
 		hitbox.monitoring = false
 
 func _can_activate() -> bool:
-	return player != null and player.is_on_floor()
+	return actor != null and actor.is_on_floor()
 
 func _on_activate() -> void:
 	elapsed = 0.0
@@ -59,13 +60,16 @@ func check_hits() -> void:
 		return
 	
 	for body in hitbox.get_overlapping_bodies():
-		if body == player:
+		if body == actor:
+			continue
+		
+		if body.is_in_group("npc"):
 			continue
 		
 		if body in hit_targets:
 			continue
 		
-		if body.is_in_group("enemy") and body.has_method("take_damage"):
+		if body.has_method("take_damage"):
 			hit_targets.append(body)
 			body.take_damage(damage)
 			
