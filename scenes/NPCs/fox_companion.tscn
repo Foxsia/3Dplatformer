@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://dw1s2h7t44rc6"]
 
+[ext_resource type="Script" uid="uid://o0wt5g4bvmlx" path="res://scripts/NPCs/fox_companion.gd" id="1_r3dk5"]
 [ext_resource type="PackedScene" uid="uid://djdip6f085w0o" path="res://scenes/Player/fox.tscn" id="1_xhgx5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5glgx"]
@@ -7,6 +8,7 @@ size = Vector3(0.7163086, 0.8128662, 1)
 
 [node name="FoxCompanion" type="CharacterBody3D" unique_id=634839089]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+script = ExtResource("1_r3dk5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1596067323]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.04321289, 0.5072116, 0)

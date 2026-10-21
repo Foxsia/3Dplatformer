@@ -3,6 +3,12 @@ extends CharacterBody3D
 const JUMP_VELOCITY := 6
 const  MAX_JUMPS := 2
 
+const FOX_SCENE = preload(
+    "res://scenes/NPCs/fox_companion.tscn"
+)
+
+var fox_companion: FoxCompanion
+
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var is_running := false
 var jumps_left := MAX_JUMPS
@@ -64,8 +70,17 @@ func _ready():
 	
 	state_machine = PlayerStateMachine.new()
 	state_machine.initialize(idle_state)
-
-
+	
+	fox_companion = FOX_SCENE.instantiate() as FoxCompanion
+	
+	fox_companion.target = self
+	
+	get_tree().current_scene.add_child.call_deferred(fox_companion)
+	fox_companion.tree_entered.connect(
+		func():
+			fox_companion.global_position = global_position + Vector3(1.5, 0.0, 1.5),
+			CONNECT_ONE_SHOT
+	)
 
 func _input(event):
 	if event is InputEventMouseMotion:
