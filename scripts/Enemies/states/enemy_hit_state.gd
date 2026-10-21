@@ -6,17 +6,27 @@ var timer := 0.0
 
 func enter() -> void:
 	timer = 0.0
-	enemy.velocity.x = 0.0
-	enemy.velocity.z = 0.0
-	enemy.play_animation("hit")
+	enemy.is_hit = true
+	enemy.stop_movement()
+	enemy.is_attacking = false
+	
+	if enemy.animation_playback:
+		enemy.animation_playback.travel("hit")
 
 func physics_update(_delta: float) -> void:
 	timer += _delta
 	
-	enemy.velocity.x = move_toward(enemy.velocity.x, 0.0, 30.0 * _delta)
-	enemy.velocity.z = move_toward(enemy.velocity.z, 0.0, 30.0 * _delta)
+	enemy.velocity.x = 0.0
+	enemy.velocity.z = 0.0
+	
 	if timer >= hit_duration:
-		if not enemy.is_on_floor():
-			enemy.state_machine.change_state(enemy.fall_state)
+		enemy.is_hit = false
+		var player = enemy.find_player()
+
+		if player != null:
+			enemy.state_machine.change_state(enemy.chase_state)
 		else:
 			enemy.state_machine.change_state(enemy.idle_state)
+
+func exit() -> void:
+	enemy.is_hit = false

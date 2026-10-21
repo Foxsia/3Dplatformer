@@ -16,6 +16,7 @@ var target: Node3D = null
 var animation_playback: AnimationNodeStateMachinePlayback = null
 var is_dead: bool = false
 var is_attacking: bool = false
+var is_hit: bool = false
 var wants_to_move: bool = false
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -25,6 +26,8 @@ var state_machine: EnemyStateMachine
 var idle_state: EnemyIdleState
 var chase_state: EnemyChaseState
 var attack_state: EnemyAttackState
+var hit_state: EnemyHitState
+var death_state: EnemyDeathState
 
 func _ready() -> void:
 	add_to_group("enemy")
@@ -50,11 +53,19 @@ func setup_state_machine() -> void:
 	
 	attack_state = EnemyAttackState.new()
 	attack_state.enemy = self
-
+	
+	hit_state = EnemyHitState.new()
+	hit_state.enemy = self
+	
+	death_state = EnemyDeathState.new()
+	death_state.enemy = self
+	
 	state_machine.initialize(idle_state)
 
 func _physics_process(delta: float) -> void:
 	if is_dead:
+		state_machine.physics_update(delta)
+		move_and_slide()
 		return
 	
 	if not is_on_floor():
@@ -109,7 +120,7 @@ func stop_movement() -> void:
 	wants_to_move = false
 
 func update_locomotion_animation() -> void:
-	if is_dead or is_attacking:
+	if is_dead or is_attacking or  is_hit:
 		return
 	if ability and ability.is_active():
 		return
@@ -140,6 +151,8 @@ func take_damage(amount: float) -> void:
 		return
 	
 	health_component.take_damage(amount)
+	
+	state_machine.change_state(hit_state)
 
 func face_target(node: Node3D):
 	if not is_instance_valid(node):
@@ -160,7 +173,7 @@ func _on_died() -> void:
 		return
 	
 	is_dead = true
-	queue_free()
+	state_machine.change_state(death_state)
 
 func get_attack_range() -> float:
 	return 0.0
