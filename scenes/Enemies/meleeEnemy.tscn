@@ -14,6 +14,12 @@ size = Vector3(0.21853638, 0.7495117, 0.06762695)
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j4q4d"]
 animation = &"1H_Melee_Attack_Slice_Diagonal"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pce76"]
+animation = &"Death_A"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ac0as"]
+animation = &"Hit_A"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_iq8kd"]
 animation = &"Idle"
 
@@ -47,14 +53,34 @@ advance_mode = 0
 xfade_time = 0.2
 advance_mode = 0
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ye0xv"]
+xfade_time = 0.2
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m50if"]
+xfade_time = 0.2
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e6hn7"]
+xfade_time = 0.2
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pi7y6"]
+xfade_time = 0.2
+advance_mode = 0
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_5glgx"]
 states/attack/node = SubResource("AnimationNodeAnimation_j4q4d")
 states/attack/position = Vector2(362, 36)
+states/death/node = SubResource("AnimationNodeAnimation_pce76")
+states/death/position = Vector2(477, 186)
+states/hit/node = SubResource("AnimationNodeAnimation_ac0as")
+states/hit/position = Vector2(326, 201)
 states/idle/node = SubResource("AnimationNodeAnimation_iq8kd")
 states/idle/position = Vector2(321, 107)
 states/walk/node = SubResource("AnimationNodeAnimation_48hpc")
 states/walk/position = Vector2(471, 107)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_8swre"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_0th86"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_uqk7a"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_pce76"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_ac0as"), "attack", "walk", SubResource("AnimationNodeStateMachineTransition_sl2xw"), "walk", "attack", SubResource("AnimationNodeStateMachineTransition_2gnum")]
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_8swre"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_0th86"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_uqk7a"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_pce76"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_ac0as"), "attack", "walk", SubResource("AnimationNodeStateMachineTransition_sl2xw"), "walk", "attack", SubResource("AnimationNodeStateMachineTransition_2gnum"), "idle", "hit", SubResource("AnimationNodeStateMachineTransition_ye0xv"), "hit", "idle", SubResource("AnimationNodeStateMachineTransition_m50if"), "walk", "death", SubResource("AnimationNodeStateMachineTransition_e6hn7"), "death", "walk", SubResource("AnimationNodeStateMachineTransition_pi7y6")]
 
 [node name="MeleeEnemy" type="CharacterBody3D" unique_id=1506305100 node_paths=PackedStringArray("ability_system", "melee_ability", "visual_root", "animation_tree", "navigation_agent", "health_component")]
 collision_layer = 2
