@@ -152,6 +152,9 @@ func take_damage(amount: float) -> void:
 	
 	health_component.take_damage(amount)
 	
+	if is_dead:
+		return
+	
 	state_machine.change_state(hit_state)
 
 func face_target(node: Node3D):
@@ -173,6 +176,10 @@ func _on_died() -> void:
 		return
 	
 	is_dead = true
+	is_attacking = false
+	is_hit = false
+	
+	stop_movement()
 	state_machine.change_state(death_state)
 
 func get_attack_range() -> float:

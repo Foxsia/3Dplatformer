@@ -3,7 +3,7 @@ class_name MeleeEnemy
 
 @export_group("Combat")
 @export var attack_range: float = 0.85
-@export var attack_cooldown := 1.2
+@export var attack_cooldown := 2.2
 
 @export_group("Abilities")
 @export var ability_system: AbilitySystem
