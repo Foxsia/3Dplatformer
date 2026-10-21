@@ -37,6 +37,8 @@ var walk_state: PlayerWalkState
 var run_state: PlayerRunState
 var jump_state: PlayerJumpState
 var fall_state: PlayerFallState
+var hit_state: PlayerHitState
+var death_state: PlayerDeathState
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -57,6 +59,8 @@ func _ready():
 	run_state = PlayerRunState.new(self)
 	jump_state = PlayerJumpState.new(self)
 	fall_state = PlayerFallState.new(self)
+	hit_state = PlayerHitState.new(self)
+	death_state = PlayerDeathState.new(self)
 	
 	state_machine = PlayerStateMachine.new()
 	state_machine.initialize(idle_state)
@@ -70,6 +74,11 @@ func _input(event):
 		pitch.rotation.x = clamp(pitch.rotation.x, deg_to_rad(-60), deg_to_rad(45))
 
 func _physics_process(delta):
+	if is_dead:
+		state_machine.physics_update(delta)
+		move_and_slide()
+		return
+	
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 	
@@ -139,6 +148,14 @@ func _physics_process(delta):
 			if object.has_method("activate"):
 				object.activate()
 
+func finish_death() -> void:
+	if not is_dead:
+		return
+	if health_component.get_lives() <= 0:
+		game_over()
+	else:
+		respawn()
+		state_machine.change_state(idle_state)
 
 func die():
 	if is_dead:
@@ -147,10 +164,7 @@ func die():
 	is_dead = true
 	health_component.lose_life()
 	
-	if health_component.get_lives() <= 0:
-		game_over()
-	else:
-		respawn()
+	state_machine.change_state(death_state)
 
 func respawn():
 	global_position = checkpoint_position
@@ -182,3 +196,5 @@ func take_damage(amount: float) -> void:
 	
 	if health_component.is_dead():
 		die()
+	else:
+		state_machine.change_state(hit_state)
