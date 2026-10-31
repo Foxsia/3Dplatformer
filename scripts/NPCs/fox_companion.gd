@@ -5,6 +5,11 @@ class_name FoxCompanion
 @export var move_speed: float = 4.0
 @export var acceleration: float = 10.0
 @export var follow_distance: float = 2.0
+@export var jump_duration: float = 0.3
+
+var is_jumping: bool = false
+var has_left_ground: bool = false
+var jump_end_position: Vector3
 
 @export_group("Movement")
 @export var gravity: float = 9.8
@@ -21,6 +26,7 @@ func _ready() -> void:
 	if navigation_agent:
 		navigation_agent.path_desired_distance = 0.5
 		navigation_agent.target_desired_distance = follow_distance
+		navigation_agent.link_reached.connect(_on_navigation_link_reached)
 
 func _physics_process(delta: float) -> void:
 	if not is_instance_valid(target):
@@ -34,6 +40,15 @@ func _physics_process(delta: float) -> void:
 		velocity.y -= gravity * delta
 	else:
 		velocity.y = 0.0
+	
+	if is_jumping:
+		move_and_slide()
+		if not is_on_floor():
+			has_left_ground = true
+		if has_left_ground and is_on_floor():
+				is_jumping = false
+				has_left_ground = false
+		return
 	
 	if not navigation_agent:
 		move_and_slide()
@@ -95,3 +110,34 @@ func stop_movement(delta: float) -> void:
 	velocity.z = move_toward(
 		velocity.z, 0.0, acceleration * delta
 	)
+
+func _on_navigation_link_reached(details: Dictionary) -> void:
+	if is_jumping:
+		return
+	
+	jump_end_position = details["link_exit_position"]
+	
+	var jump_direction = jump_end_position - global_position
+	
+	var horizontal_direction := Vector3(
+		jump_direction.x,
+		0.0,
+		jump_direction.z
+	)
+	
+	var horizontal_distance := horizontal_direction.length()
+	if horizontal_distance < 0.1:
+		return
+	
+	var duration := maxf(
+		horizontal_distance / move_speed,
+		jump_duration
+	)
+	
+	var horizontal_velocity := horizontal_direction / duration
+	
+	velocity.x = horizontal_velocity.x
+	velocity.z = horizontal_velocity.z
+	
+	velocity.y = (jump_direction.y + 0.5 * gravity * duration * duration) / duration
+	is_jumping = true

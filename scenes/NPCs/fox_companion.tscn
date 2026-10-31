@@ -9,10 +9,6 @@ size = Vector3(0.7163086, 0.8128662, 1)
 [node name="FoxCompanion" type="CharacterBody3D" unique_id=634839089 node_paths=PackedStringArray("navigation_agent", "visual_root")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 script = ExtResource("1_r3dk5")
-move_speed = null
-acceleration = null
-follow_distance = null
-gravity = null
 navigation_agent = NodePath("NavigationAgent3D")
 visual_root = NodePath("animal-fox2")
 

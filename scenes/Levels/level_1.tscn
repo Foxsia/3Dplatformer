@@ -28,6 +28,40 @@ agent_radius = 1.0
 
 [node name="Level1" type="Node3D" unique_id=1654974197 groups=["level"]]
 
+[node name="NavigationLink3D" type="NavigationLink3D" parent="." unique_id=648772314]
+start_position = Vector3(0.6451416, 0.52139854, 1.439258)
+end_position = Vector3(1.2934608, 0.43484592, 5.569462)
+
+[node name="NavigationLink3D2" type="NavigationLink3D" parent="." unique_id=143140543]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3786602, -0.12193024, 1.3523109)
+start_position = Vector3(-1.5936298, 0.45871794, 0.14549184)
+end_position = Vector3(-8.010712, 0.5208992, 0.8990319)
+
+[node name="NavigationLink3D3" type="NavigationLink3D" parent="." unique_id=1583929236]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4577308, 0, -1.2608082)
+start_position = Vector3(0.6451416, 0.52139854, 1.439258)
+end_position = Vector3(4.259477, 0.57417303, 1.3596852)
+
+[node name="NavigationLink3D4" type="NavigationLink3D" parent="." unique_id=1481437768]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07070923, 0, 6.656018)
+start_position = Vector3(0.6451416, 0.52139854, 1.439258)
+end_position = Vector3(1.1959, 1.0697241, 6.359361)
+
+[node name="NavigationLink3D5" type="NavigationLink3D" parent="." unique_id=1350756361]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8309636, 0, 13.234797)
+start_position = Vector3(0.6451416, 0.52139854, 1.439258)
+end_position = Vector3(4, 0.347, 1)
+
+[node name="NavigationLink3D6" type="NavigationLink3D" parent="." unique_id=133104272]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.7294083, -0.13535404, 15.364131)
+start_position = Vector3(0.2680807, 0.6818571, 1.2535467)
+end_position = Vector3(5.077116, 0.7448149, 0.13021183)
+
+[node name="NavigationLink3D7" type="NavigationLink3D" parent="." unique_id=410794081]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.156806, 0, 10.269772)
+start_position = Vector3(8.016, 0.5, 5.591)
+end_position = Vector3(1.2934608, 0.43484592, 5.569462)
+
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=509550744]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4393537, 0.30035412, 2.1642544)
 navigation_mesh = SubResource("NavigationMesh_5glgx")
