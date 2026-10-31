@@ -10,6 +10,6 @@ func _process(delta):
 	ring.rotate_x(rotation_speed * delta)
 
 func _on_body_entered(body):
-	if body is CharacterBody3D:
+	if body is CharacterBody3D and body.is_in_group("player"):
 		GameManager.add_ring()
 		queue_free()

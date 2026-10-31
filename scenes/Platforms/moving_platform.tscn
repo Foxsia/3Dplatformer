@@ -3,13 +3,13 @@
 [ext_resource type="Script" uid="uid://bimueso5hfy6p" path="res://scripts/Platforms/moving_platform.gd" id="1_q06lf"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_5glgx"]
-size = Vector3(5, 0.5, 2)
+size = Vector3(5, 0.5, 5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0vgel"]
 albedo_color = Color(0.010819516, 0.42622805, 0.014390613, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_urqp6"]
-size = Vector3(5, 0.5, 2)
+size = Vector3(5, 0.5, 5)
 
 [node name="MovingPlatform" type="AnimatableBody3D" unique_id=1437887413]
 script = ExtResource("1_q06lf")
