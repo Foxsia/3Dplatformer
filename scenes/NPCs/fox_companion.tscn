@@ -6,9 +6,19 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_5glgx"]
 size = Vector3(0.7163086, 0.8128662, 1)
 
-[node name="FoxCompanion" type="CharacterBody3D" unique_id=634839089]
+[node name="FoxCompanion" type="CharacterBody3D" unique_id=634839089 node_paths=PackedStringArray("navigation_agent", "visual_root")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 script = ExtResource("1_r3dk5")
+move_speed = null
+acceleration = null
+follow_distance = null
+gravity = null
+navigation_agent = NodePath("NavigationAgent3D")
+visual_root = NodePath("animal-fox2")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=694382341]
+path_desired_distance = 0.5
+target_desired_distance = 0.5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1596067323]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.04321289, 0.5072116, 0)
