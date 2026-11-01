@@ -88,18 +88,18 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 	
-	if Input.is_action_just_pressed("quit"):
+	if InputManager.is_quit_pressed():
 		get_tree().quit()
 	
-	if Input.is_action_just_pressed("attack"):
+	if InputManager.is_attack_pressed():
 		ability_system.request_activation(sword_attack_ability)
 	
-	if Input.is_action_pressed("sprint"):
+	if InputManager.is_sprint_pressed():
 		is_running = true
 	else:
 		is_running = false
 
-	var input_dir = Input.get_vector("left", "right", "up", "down")
+	var input_dir = InputManager.get_movement_input()
 	var forward = -pivot.global_transform.basis.z
 	forward.y = 0
 	forward = forward.normalized()
@@ -129,14 +129,14 @@ func _physics_process(delta):
 			velocity.x = move_toward(velocity.x, 0, movement_component.get_speed())
 			velocity.z = move_toward(velocity.z, 0, movement_component.get_speed())
 	
-	if Input.is_action_just_pressed("dash"):
+	if InputManager.is_dash_pressed():
 		var dash_direction = -pivot.global_transform.basis.z
 		dash_direction.y = 0.0
 		dash_direction = dash_direction.normalized()
 		dash_ability.set_direction(dash_direction)
 		ability_system.request_activation(dash_ability)
 	
-	if Input.is_action_just_pressed("ground_slam"):
+	if InputManager.is_ground_slam_pressed():
 		ability_system.request_activation(ground_slam_ability)
 
 	
@@ -147,7 +147,7 @@ func _physics_process(delta):
 	if global_position.y < -10:
 		die()
 	
-	if Input.is_action_just_pressed("interact"):
+	if InputManager.is_interact_pressed():
 		if raycast.is_colliding():
 			var object = raycast.get_collider()
 			
@@ -196,7 +196,7 @@ func  play_animation(animation_name: String) -> void:
 	animation_playback.travel(animation_name)
 
 func is_moving() -> bool:
-	var input_dir = Input.get_vector("left", "right", "down", "up")
+	var input_dir = InputManager.get_movement_input()
 	return input_dir.length() > 0.0
 
 func take_damage(amount: float) -> void:

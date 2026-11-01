@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://cv2bvxu0p0pak" path="res://scenes/Enemies/meleeEnemy.tscn" id="12_a60bd"]
 [ext_resource type="PackedScene" uid="uid://b6d4dt5eq06qa" path="res://scenes/Interactable/puzzle_button.tscn" id="12_ngn3o"]
 [ext_resource type="PackedScene" uid="uid://cujfbqmacn182" path="res://scenes/NPCs/panda.tscn" id="13_iiv34"]
-[ext_resource type="Script" uid="uid://u3rvrfmp4gv7" path="res://scripts/puzzle_manager.gd" id="14_iiv34"]
+[ext_resource type="Script" uid="uid://u3rvrfmp4gv7" path="res://scripts/Managers/puzzle_manager.gd" id="14_iiv34"]
 [ext_resource type="PackedScene" uid="uid://bhc4tc25ew7u3" path="res://scenes/gate.tscn" id="15_vtd0g"]
 [ext_resource type="PackedScene" uid="uid://c1xlwnln8wxg4" path="res://scenes/Platforms/rotating_platform.tscn" id="16_hk2jt"]
 [ext_resource type="PackedScene" uid="uid://dtgijhceq7mir" path="res://scenes/Interactable/goal.tscn" id="17_5gowt"]
