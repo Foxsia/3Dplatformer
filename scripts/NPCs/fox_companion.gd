@@ -143,3 +143,6 @@ func _on_navigation_link_reached(details: Dictionary) -> void:
 	
 	velocity.y = (jump_direction.y + 0.5 * gravity * duration * duration) / duration
 	is_jumping = true
+
+func spawn_at(position: Vector3) -> void:
+	global_position = position
