@@ -82,7 +82,7 @@ states/walk/node = SubResource("AnimationNodeAnimation_48hpc")
 states/walk/position = Vector2(471, 107)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_8swre"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_0th86"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_uqk7a"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_pce76"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_ac0as"), "attack", "walk", SubResource("AnimationNodeStateMachineTransition_sl2xw"), "walk", "attack", SubResource("AnimationNodeStateMachineTransition_2gnum"), "idle", "hit", SubResource("AnimationNodeStateMachineTransition_ye0xv"), "hit", "idle", SubResource("AnimationNodeStateMachineTransition_m50if"), "walk", "death", SubResource("AnimationNodeStateMachineTransition_e6hn7"), "death", "walk", SubResource("AnimationNodeStateMachineTransition_pi7y6")]
 
-[node name="MeleeEnemy" type="CharacterBody3D" unique_id=1506305100 node_paths=PackedStringArray("ability_system", "melee_ability", "visual_root", "animation_tree", "navigation_agent", "health_component")]
+[node name="MeleeEnemy" type="CharacterBody3D" unique_id=1506305100 node_paths=PackedStringArray("ability_system", "melee_ability", "visual_root", "animation_tree", "navigation_agent", "health_component", "movement_component")]
 collision_layer = 2
 script = ExtResource("1_8kowh")
 ability_system = NodePath("AbilitySystem")
@@ -91,6 +91,9 @@ visual_root = NodePath(".")
 animation_tree = NodePath("Rogue/AnimationTree")
 navigation_agent = NodePath("NavigationAgent3D")
 health_component = NodePath("HealthComponent")
+movement_component = NodePath("EnemyMovementComponent")
+
+[node name="EnemyMovementComponent" type="EnemyMovementComponent" parent="." unique_id=915818354]
 
 [node name="HealthComponent" type="HealthComponent" parent="." unique_id=1798651734]
 max_health = 60.0

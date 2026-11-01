@@ -141,6 +141,8 @@ namespace godot
         velocity.x = direction.x * move_speed;
         velocity.z = direction.z * move_speed;
 
+        body->set_velocity(velocity);
+
         wants_to_move = true;
 	}
 	void EnemyMovementComponent::stop_movement()
@@ -160,6 +162,46 @@ namespace godot
 	}
 	void EnemyMovementComponent::jump_to_position(Vector3 destination)
 	{
+        if (!body || is_jumping) {
+            return;
+        }
+
+        Vector3 jump_direction = destination - body->get_global_position();
+
+        Vector3 horizontal_direction(
+            jump_direction.x,
+            0.0,
+            jump_direction.z
+        );
+
+        double horizontal_distance = horizontal_direction.length();
+
+        if (horizontal_distance < 0.1) {
+            return;
+        }
+
+        double duration = MAX(
+            horizontal_distance / move_speed,
+            jump_duration
+        );
+
+        duration = CLAMP(duration, 0.2, 1.0);
+
+        Vector3 velocity = body->get_velocity();
+
+        velocity.x = horizontal_direction.x / duration;
+        velocity.z = horizontal_direction.z / duration;
+
+        velocity.y = (
+            jump_direction.y +
+            0.5 * gravity * duration * duration
+            ) / duration;
+
+        body->set_velocity(velocity);
+
+        is_jumping = true;
+        has_left_floor = false;
+        wants_to_move = false;
 	}
 	void EnemyMovementComponent::update()
 	{
@@ -199,7 +241,7 @@ namespace godot
 	}
 	void EnemyMovementComponent::set_gravity(double value)
 	{
-        gravity = MAX(gravity, 0.0);
+        gravity = MAX(value, 0.0);
 	}
 	double EnemyMovementComponent::get_gravity() const
 	{
