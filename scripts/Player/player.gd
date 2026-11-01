@@ -71,16 +71,7 @@ func _ready():
 	state_machine = PlayerStateMachine.new()
 	state_machine.initialize(idle_state)
 	
-	fox_companion = FOX_SCENE.instantiate() as FoxCompanion
-	
-	fox_companion.target = self
-	
-	get_tree().current_scene.add_child.call_deferred(fox_companion)
-	fox_companion.tree_entered.connect(
-		func():
-			fox_companion.global_position = global_position + Vector3(1.5, 0.0, 1.5),
-			CONNECT_ONE_SHOT
-	)
+	spawn_fox()
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -179,6 +170,10 @@ func die():
 	is_dead = true
 	health_component.lose_life()
 	
+	if is_instance_valid(fox_companion):
+		fox_companion.queue_free()
+		fox_companion = null
+	
 	state_machine.change_state(death_state)
 
 func respawn():
@@ -189,6 +184,7 @@ func respawn():
 	health_component.reset_health()
 	
 	is_dead = false
+	spawn_fox()
 
 func game_over():
 	get_tree().change_scene_to_file.call_deferred("res://scenes/UI/game_over_screen.tscn")
@@ -213,3 +209,18 @@ func take_damage(amount: float) -> void:
 		die()
 	else:
 		state_machine.change_state(hit_state)
+
+func spawn_fox() -> void:
+	if is_instance_valid(fox_companion):
+		return
+	
+	fox_companion = FOX_SCENE.instantiate() as FoxCompanion
+	
+	fox_companion.target = self
+	
+	get_tree().current_scene.add_child.call_deferred(fox_companion)
+	fox_companion.tree_entered.connect(
+		func():
+			fox_companion.global_position = global_position + Vector3(2.5, 0.0, 1.5),
+			CONNECT_ONE_SHOT
+	)
