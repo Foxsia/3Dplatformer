@@ -4,6 +4,7 @@ class_name EnemyBase
 @export_group("Movement")
 @export var move_speed := 2.5
 @export var detection_range := 10.0
+@export var jump_duration: float = 0.5
 
 @export_group("References")
 @export var visual_root: Node3D
@@ -12,12 +13,16 @@ class_name EnemyBase
 @export var health_component: HealthComponent
 @export var ability: Ability
 
+
 var target: Node3D = null
 var animation_playback: AnimationNodeStateMachinePlayback = null
 var is_dead: bool = false
 var is_attacking: bool = false
 var is_hit: bool = false
 var wants_to_move: bool = false
+var is_jumping = false
+var jump_end_position: Vector3
+
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -39,6 +44,9 @@ func _ready() -> void:
 	
 	if health_component:
 		health_component.died.connect(_on_died)
+	
+	if navigation_agent:
+		navigation_agent.link_reached.connect(_on_navigation_link_reached)
 	
 	setup_state_machine()
 
@@ -76,6 +84,10 @@ func _physics_process(delta: float) -> void:
 	state_machine.physics_update(delta)
 	state_machine.update(delta)
 	move_and_slide()
+	
+	if is_on_floor() and is_jumping:
+		is_jumping = false
+	
 	update_locomotion_animation()
 
 func find_player() -> Node3D:
@@ -89,6 +101,9 @@ func find_player() -> Node3D:
 	return player
 
 func move_towards_position(destination: Vector3) -> void:
+	if is_jumping:
+		return
+	
 	if not is_instance_valid(navigation_agent):
 		stop_movement()
 		return
@@ -101,6 +116,8 @@ func move_towards_position(destination: Vector3) -> void:
 		return
 	
 	var next_position: Vector3 = navigation_agent.get_next_path_position()
+	if is_jumping:
+		return
 	var direction: Vector3 = next_position - global_position
 	direction.y = 0.0
 	
@@ -187,3 +204,36 @@ func get_attack_range() -> float:
 
 func start_attack() -> void:
 	pass
+
+func _on_navigation_link_reached(details: Dictionary) -> void:
+	if is_jumping:
+		return
+	
+	jump_end_position = details["link_exit_position"]
+	
+	var jump_direction = jump_end_position - global_position
+	
+	var horizontal_direction := Vector3(
+		jump_direction.x,
+		0.0,
+		jump_direction.z
+	)
+	
+	var horizontal_distance := horizontal_direction.length()
+	if horizontal_distance < 0.1:
+		return
+	
+	var duration := maxf(
+		horizontal_distance / move_speed,
+		jump_duration
+	)
+	
+	duration = clampf(duration, 0.2, 1.0)
+	
+	var horizontal_velocity := horizontal_direction / duration
+	
+	velocity.x = horizontal_velocity.x
+	velocity.z = horizontal_velocity.z
+	
+	velocity.y = (jump_direction.y + 0.5 * gravity * duration * duration) / duration
+	is_jumping = true

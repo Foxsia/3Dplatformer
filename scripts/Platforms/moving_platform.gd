@@ -7,9 +7,9 @@ var start_position : Vector3
 var time := 0.0
 
 func _ready():
-	start_position = position
+	start_position = global_position
 
 func _physics_process(delta):
 	time += delta
 	
-	position.x = start_position.x + sin(time * move_speed) * move_distance
+	global_position.x = start_position.x + sin(time * move_speed) * move_distance

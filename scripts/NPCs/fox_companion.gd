@@ -5,7 +5,7 @@ class_name FoxCompanion
 @export var move_speed: float = 4.0
 @export var acceleration: float = 10.0
 @export var follow_distance: float = 2.0
-@export var jump_duration: float = 0.3
+@export var jump_duration: float = 0.7
 
 var is_jumping: bool = false
 var has_left_ground: bool = false
@@ -133,6 +133,8 @@ func _on_navigation_link_reached(details: Dictionary) -> void:
 		horizontal_distance / move_speed,
 		jump_duration
 	)
+	
+	duration = clampf(duration, 0.2, 1.0)
 	
 	var horizontal_velocity := horizontal_direction / duration
 	
