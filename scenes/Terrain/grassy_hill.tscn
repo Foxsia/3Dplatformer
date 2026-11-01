@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://mmnwbyc5jgdu"]
+
+[ext_resource type="PackedScene" uid="uid://bbomxk1xbjh2w" path="res://assets/terrain/grassy_hill.glb" id="1_nvp05"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0q22o"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_04ccg"]
+sky_material = SubResource("ProceduralSkyMaterial_0q22o")
+
+[sub_resource type="Environment" id="Environment_v0akj"]
+background_mode = 2
+sky = SubResource("Sky_04ccg")
+glow_enabled = true
+
+[node name="grassyHill" type="Node3D" unique_id=1078449957]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1194465062]
+environment = SubResource("Environment_v0akj")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=816322405]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="grassy_hill" parent="." unique_id=1077175805 instance=ExtResource("1_nvp05")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.032218933, 0.009082317, 0.010086775)
