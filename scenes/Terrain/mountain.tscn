@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://djsq1owdlcnm1"]
+
+[ext_resource type="PackedScene" uid="uid://bhvt4qi8hd0po" path="res://assets/terrain/mountain.glb" id="1_r64wy"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_r64wy"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_rhm4k"]
+sky_material = SubResource("ProceduralSkyMaterial_r64wy")
+
+[sub_resource type="Environment" id="Environment_ob60t"]
+background_mode = 2
+sky = SubResource("Sky_rhm4k")
+glow_enabled = true
+
+[node name="Mountain" type="Node3D" unique_id=646134924]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=76860582]
+environment = SubResource("Environment_ob60t")
+
+[node name="mountain" parent="." unique_id=1423987215 instance=ExtResource("1_r64wy")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 1.4551392, 0, 1.7935791)
