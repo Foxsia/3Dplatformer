@@ -46,7 +46,7 @@ end_position = Vector3(4.259477, 0.57417303, 1.3596852)
 
 [node name="NavigationLink3D4" type="NavigationLink3D" parent="." unique_id=1481437768]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07070923, 0, 6.656018)
-start_position = Vector3(0.6451416, 0.52139854, 1.439258)
+start_position = Vector3(-1, 0.521, 1.439)
 end_position = Vector3(1.1959, 1.0697241, 6.359361)
 
 [node name="NavigationLink3D5" type="NavigationLink3D" parent="." unique_id=1350756361]
@@ -127,7 +127,7 @@ transform = Transform3D(0.021541912, 0, 0.99976796, 0, 1, 0, -0.99976796, 0, 0.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.49966, -0.30035412, 12.888297)
 
 [node name="Gate" parent="NavigationRegion3D" unique_id=1485193020 instance=ExtResource("15_vtd0g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.432173, 3.835888, 6.9631014)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.432173, 3.8713198, 6.9631014)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1174930809]
 transform = Transform3D(0.5956385, 0.63187957, -0.4959264, 0.13173604, 0.5321928, 0.8363112, 0.79237646, -0.56347054, 0.23375322, -6.7096343, 9.009928, 2.4747252)
