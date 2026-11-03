@@ -221,6 +221,6 @@ func spawn_fox() -> void:
 	get_tree().current_scene.add_child.call_deferred(fox_companion)
 	fox_companion.tree_entered.connect(
 		func():
-			fox_companion.spawn_at(global_position + Vector3(2.5, 0.0, 1.5)),
+			fox_companion.spawn_at(global_position + Vector3(0.5, 0.0, 0.5)),
 			CONNECT_ONE_SHOT
 	)

@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://dqresirb884u7" path="res://scenes/Player/player.tscn" id="2_j85eu"]
 [ext_resource type="PackedScene" uid="uid://dtnw8guevhw2r" path="res://scenes/Collectible/ring.tscn" id="3_4p1o3"]
 [ext_resource type="PackedScene" uid="uid://b7vtg7sgi3wou" path="res://scenes/Interactable/checkpoint.tscn" id="4_14nfc"]
-[ext_resource type="PackedScene" uid="uid://mmnwbyc5jgdu" path="res://scenes/Terrain/grassy_hill.tscn" id="4_811s2"]
 [ext_resource type="PackedScene" uid="uid://cpyrqdc5yb01n" path="res://scenes/Hazards/spike_hazard.tscn" id="5_ngn3o"]
 [ext_resource type="PackedScene" uid="uid://bhkdjyjyafc4n" path="res://scenes/Hazards/moving_hazard.tscn" id="6_iiv34"]
 [ext_resource type="PackedScene" uid="uid://dopuk7ndch3l0" path="res://scenes/Platforms/moving_platform.tscn" id="7_vtd0g"]
@@ -21,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://c1xlwnln8wxg4" path="res://scenes/Platforms/rotating_platform.tscn" id="16_hk2jt"]
 [ext_resource type="PackedScene" uid="uid://dtgijhceq7mir" path="res://scenes/Interactable/goal.tscn" id="17_5gowt"]
 [ext_resource type="PackedScene" uid="uid://djsq1owdlcnm1" path="res://scenes/Terrain/mountain.tscn" id="21_4xsrm"]
+[ext_resource type="PackedScene" uid="uid://fmqu5eps621j" path="res://scenes/Terrain/hill.tscn" id="21_hc568"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_5glgx"]
 vertices = PackedVector3Array(-10.395493, 0.100521654, -3.9054966, -10.395493, 0.100521654, 4.3445034, -7.3954926, 0.100521654, 4.3445034, -7.3954926, 0.100521654, -3.9054966, 6.1045074, 0.30052164, -3.9054966, 6.1045074, 0.30052164, -0.6554966, 14.354507, 0.30052164, -0.6554966, 14.354507, 0.30052164, -3.9054966, 21.604507, 0.100521654, -3.9054966, 21.604507, 0.100521654, -0.6554966, 24.854507, 0.100521654, -0.6554966, 24.854507, 0.100521654, -3.9054966, 28.854507, 0.100521654, -3.9054966, 28.854507, 0.100521654, -0.6554966, 31.854507, 0.100521654, -0.6554966, 31.854507, 0.100521654, -3.9054966, -1.6454926, 0.100521654, -3.4054966, -1.6454926, 0.100521654, -0.1554966, 2.6045074, 0.100521654, -0.1554966, 2.6045074, 0.100521654, -3.4054966, -1.1454926, 0.100521654, 3.0945034, -1.1454926, 0.100521654, 5.5945034, 2.1045074, 0.100521654, 5.5945034, 2.1045074, 0.100521654, 3.0945034, 7.1045074, 0.100521654, 12.594503, 8.104507, 0.100521654, 11.844503, 7.8545074, 0.100521654, 11.094503, 5.6045074, 0.100521654, 11.094503, 4.6045074, 0.100521654, 12.094503, 4.6045074, 0.100521654, 14.094503, 5.1045074, 0.100521654, 14.844503, 7.1045074, 0.100521654, 13.594503, 8.104507, 0.100521654, 14.844503, -1.1454926, 0.100521654, 11.094503, -1.1454926, 0.100521654, 14.344503, 2.1045074, 0.100521654, 14.344503, 2.1045074, 0.100521654, 11.094503, 11.854507, 0.100521654, 11.344503, 11.854507, 0.100521654, 14.594503, 15.104507, 0.100521654, 14.594503, 15.104507, 0.100521654, 11.344503, 24.604507, 0.100521654, 14.594503, 24.604507, 0.100521654, 13.844503, 23.854507, 0.100521654, 13.844503, 21.354507, 0.100521654, 14.594503, 23.104507, 0.100521654, 13.094503, 23.354507, 0.100521654, 11.344503, 21.354507, 0.100521654, 11.344503)
@@ -41,7 +41,7 @@ end_position = Vector3(-8.010712, 0.5208992, 0.8990319)
 
 [node name="NavigationLink3D3" type="NavigationLink3D" parent="." unique_id=1583929236]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4577308, 0, -1.2608082)
-start_position = Vector3(0.6451416, 0.52139854, 1.439258)
+start_position = Vector3(0.6277857, 0.50805664, 1.8387268)
 end_position = Vector3(4.259477, 0.57417303, 1.3596852)
 
 [node name="NavigationLink3D4" type="NavigationLink3D" parent="." unique_id=1481437768]
@@ -107,9 +107,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4393537, -0.30035412, 12.66
 
 [node name="Platform8" parent="NavigationRegion3D" unique_id=359457609 instance=ExtResource("1_xxpsm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.454195, -0.30035412, -2.1642544)
-
-[node name="grassyHill" parent="NavigationRegion3D" unique_id=1078449957 instance=ExtResource("4_811s2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2936659, 0, -1.9089351)
 
 [node name="AnimatableBody3D" parent="NavigationRegion3D" unique_id=1912193383 instance=ExtResource("16_hk2jt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.664055, -0.30035412, 13.082326)
@@ -277,4 +274,7 @@ gate = NodePath("../NavigationRegion3D/Gate")
 panda = NodePath("../Panda")
 
 [node name="Mountain" parent="." unique_id=646134924 instance=ExtResource("21_4xsrm")]
-transform = Transform3D(-0.08668751, 0, -0.99623555, 0, 1, 0, 0.99623555, 0, -0.08668751, 3.381189, -1.0222722, 6.7533064)
+transform = Transform3D(-0.08668751, 0, -0.99623555, 0, 1, 0, 0.99623555, 0, -0.08668751, 3.3443806, 0.47828352, 6.814069)
+
+[node name="hill" parent="." unique_id=102951137 instance=ExtResource("21_hc568")]
+transform = Transform3D(-0.48718306, 0, 0.87329996, 0, 1, 0, -0.87329996, 0, -0.48718306, 2.8623815, 0.1750412, -1.728252)

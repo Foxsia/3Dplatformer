@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://fmqu5eps621j"]
+
+[ext_resource type="PackedScene" uid="uid://b3s7xqyrxekl5" path="res://assets/terrain/hill.glb" id="1_d6s8h"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_iebo1"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_o2wg5"]
+sky_material = SubResource("ProceduralSkyMaterial_iebo1")
+
+[sub_resource type="Environment" id="Environment_vg5fe"]
+background_mode = 2
+sky = SubResource("Sky_o2wg5")
+glow_enabled = true
+
+[node name="hill" type="Node3D" unique_id=102951137]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1179220252]
+environment = SubResource("Environment_vg5fe")
+
+[node name="hill" parent="." unique_id=499315009 instance=ExtResource("1_d6s8h")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.936507, -0.9868233, 0.78398603)
