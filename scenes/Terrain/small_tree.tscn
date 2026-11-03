@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bygmw3cvxqgmj"]
+
+[ext_resource type="PackedScene" uid="uid://cnueum1hdtycr" path="res://assets/terrain/smallTree.glb" id="1_2tqwu"]
+
+[node name="SmallTree" type="Node3D" unique_id=44922419]
+
+[node name="smallTree" parent="." unique_id=1710939662 instance=ExtResource("1_2tqwu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0083067, 1.0917022, -0.24497819)

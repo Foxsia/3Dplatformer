@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://y74gp08oq3rr"]
+
+[ext_resource type="PackedScene" uid="uid://d0wdwuxpiwuen" path="res://assets/terrain/simpleTree.glb" id="1_823jj"]
+
+[node name="SimpleTree" type="Node3D" unique_id=1823209098]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6272364, -2.5593438, -3.9241104)
+
+[node name="simpleTree" parent="." unique_id=1930130206 instance=ExtResource("1_823jj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1354399, 0.570297, -1.8101172)
